@@ -31,14 +31,6 @@ public class EstadoPuzzleOcho implements Estado {
     }
     
     /**
-     * Cuanto cuesta llegar a este estado
-     */
-    @Override
-    public double determinarCosto() {
-        return 1;
-    }
-
-    /**
      * Esta pensado en términos de no más 4 operaciones en el hueco. Puede
      * deslizar el hueco en 4 direcciones si está en medio del tablero, en dos
      * direcciones si el agujero está en una esquina, en tres direcciones si el

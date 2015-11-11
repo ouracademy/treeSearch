@@ -2,6 +2,7 @@ package com.unmsm.panqueque;
 
 
 import com.unmsm.busqueda.Estado;
+import com.unmsm.busqueda.evaluacion.CostoEntreEstados;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -15,6 +16,7 @@ public class EstadoPanqueques implements Estado {
 
     public static Integer[] META = new Integer[]{1, 2, 3, 4};
     private Integer[] estadoActual;
+    private CostoEntreEstados costoEntreEstados;
 
     public EstadoPanqueques() {
         this.estadoActual = new Integer[]{4, 2, 3, 1};
@@ -90,10 +92,5 @@ public class EstadoPanqueques implements Estado {
 
     public Integer[] getEstadoActual() {
         return estadoActual;
-    }
-
-    @Override
-    public double determinarCosto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -1,5 +1,6 @@
 package com.unmsm.busqueda;
 
+import com.unmsm.busqueda.evaluacion.CostoEntreEstados;
 import java.util.List;
 
 /**
@@ -10,7 +11,8 @@ import java.util.List;
  */
 public interface Estado
 {
-	/**
+        
+        /**
          * Determina si el estado actual es una meta
          * @return esMeta
          */
@@ -22,12 +24,6 @@ public interface Estado
          */
         List<Estado> generarSucesores();
         
-        /**
-         * Determinar el costo desde el estado inicial hasta ESTE estado
-         * @return costo
-         */
-	double determinarCosto();
-
 	/**
          * Comparar los datos del estado actual
          * @param estado

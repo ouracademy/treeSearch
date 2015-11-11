@@ -1,7 +1,8 @@
-package com.unmsm.busqueda.busquedas;
+package com.unmsm.busqueda.busquedas.informada;
 
 import com.unmsm.busqueda.Estado;
 import com.unmsm.busqueda.NodoDeBusqueda;
+import com.unmsm.busqueda.busquedas.ListaOrdenadaSE;
 import com.unmsm.busqueda.evaluacion.Heuristica;
 import com.unmsm.busqueda.util.ArbolBusquedaPlantilla;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
 public class BusquedaAEstrella extends ArbolBusquedaPlantilla{
 
     private ListaOrdenadaSE<NodoDeBusqueda> listaOrdenada;
-    Heuristica heuristica;
+    private Heuristica heuristica;
 
     public BusquedaAEstrella(Heuristica heuristica) {
         this.heuristica = heuristica;

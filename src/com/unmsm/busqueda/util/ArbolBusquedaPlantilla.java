@@ -4,6 +4,11 @@ import com.unmsm.busqueda.Busqueda;
 import com.unmsm.busqueda.Camino;
 import com.unmsm.busqueda.Estado;
 import com.unmsm.busqueda.NodoDeBusqueda;
+import com.unmsm.busqueda.busquedas.prioridad.Prioridad;
+import com.unmsm.busqueda.busquedas.prioridad.PrioridadDerechaIzquierda;
+import com.unmsm.busqueda.busquedas.prioridad.PrioridadIzquierdaDerecha;
+import com.unmsm.busqueda.evaluacion.CostoEntreEstados;
+import com.unmsm.busqueda.evaluacion.CostoPorDefecto;
 import java.util.List;
 
 /**
@@ -13,7 +18,30 @@ import java.util.List;
  * @author Arthur Mauricio Delgadillo
  */
 public abstract class ArbolBusquedaPlantilla implements Busqueda {
+    public static final Prioridad PRIORIDAD_POR_DEFECTO = new PrioridadDerechaIzquierda();
     private int conteoBusqueda;
+    private CostoEntreEstados calculaCosto;
+    private Prioridad prioridad;
+    
+    public ArbolBusquedaPlantilla conCostoEntreEstados(CostoEntreEstados calculaCosto) {
+        this.calculaCosto = calculaCosto;
+        return this;
+    }
+    
+    public ArbolBusquedaPlantilla conPrioridad(Prioridad.Tipos tipoPrioridad) {
+        if(Prioridad.Tipos.IZQUIERDA_A_DERECHA == tipoPrioridad){
+            prioridad = new PrioridadIzquierdaDerecha();
+        }else if(Prioridad.Tipos.DERECHA_A_IZQUIERDA == tipoPrioridad){
+            prioridad = new PrioridadDerechaIzquierda();
+        }
+        return this;
+    }
+    
+    public ArbolBusquedaPlantilla conPrioridad(Prioridad prioridad) {
+        this.prioridad = prioridad;
+        return this;
+    }
+    
 
     @Override
     public Camino buscar(Estado estadoInicial) {
@@ -36,10 +64,25 @@ public abstract class ArbolBusquedaPlantilla implements Busqueda {
     private void inicializar(Estado estadoInicial) {
         conteoBusqueda = 1;
         inicializarEstrategiaBusqueda();
+        inicializarPrioridad();
         NodoDeBusqueda raiz = new NodoDeBusqueda(estadoInicial);
         agregarCandidato(raiz);
+        inicializarCostoEntreEstados();
     }
 
+    private void inicializarCostoEntreEstados() {
+        if (calculaCosto == null) {
+            calculaCosto = new CostoPorDefecto();
+        }
+        NodoDeBusqueda.costoEntreEstados = calculaCosto;
+    }
+    
+    private void inicializarPrioridad() {
+        if (prioridad == null) {
+            prioridad = PRIORIDAD_POR_DEFECTO;
+        }
+    }
+    
     private boolean esMeta(NodoDeBusqueda nodoABuscar) {
         return nodoABuscar.getEstadoActual().esMeta();
     }
@@ -50,8 +93,7 @@ public abstract class ArbolBusquedaPlantilla implements Busqueda {
      * la cola
      */
     private void expandirArbol(NodoDeBusqueda nodoEnExpansion) {
-        List<Estado> sucesores = nodoEnExpansion.expandir();
-        agregarNodos(nodoEnExpansion, sucesores);
+        agregarNodos(nodoEnExpansion, prioridad.expandirSucesores(nodoEnExpansion));
     }
 
     /*

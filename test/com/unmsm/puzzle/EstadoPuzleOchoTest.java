@@ -23,17 +23,6 @@ public class EstadoPuzleOchoTest {
     }
 
     /**
-     * Test of determinarCosto method, of class EstadoPuzleOcho.
-     */
-    @Test
-    public void testDeterminarCosto() {
-        System.out.println("determinarCosto");
-        double expResult = 1;
-        double result = estadoPuzzle.determinarCosto();
-        assertEquals((int)expResult, (int)result);
-    }
-
-    /**
      * Test of getPiezasFueraDeLugar method, of class EstadoPuzleOcho.
      */
     @Test
