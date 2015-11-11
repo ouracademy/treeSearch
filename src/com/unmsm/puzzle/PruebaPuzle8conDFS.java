@@ -2,7 +2,7 @@ package com.unmsm.puzzle;
 
 import com.unmsm.busqueda.Busqueda;
 import com.unmsm.busqueda.Camino;
-import com.unmsm.busqueda.busquedas.BusquedaDFS;
+import com.unmsm.busqueda.busquedas.noinformada.BusquedaDFS;
 import com.unmsm.util.Consola;
 
 public class PruebaPuzle8conDFS {

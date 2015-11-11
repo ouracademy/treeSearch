@@ -1,5 +1,6 @@
-package com.unmsm.busqueda.busquedas;
+package com.unmsm.busqueda.busquedas.noinformada;
 
+import com.unmsm.busqueda.busquedas.noinformada.BusquedaNoInformada;
 import com.unmsm.busqueda.NodoDeBusqueda;
 import com.unmsm.busqueda.util.ArbolBusquedaPlantilla;
 import java.util.Stack;

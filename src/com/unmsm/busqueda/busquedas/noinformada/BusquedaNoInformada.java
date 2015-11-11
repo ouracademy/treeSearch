@@ -1,4 +1,4 @@
-package com.unmsm.busqueda.busquedas;
+package com.unmsm.busqueda.busquedas.noinformada;
 
 import com.unmsm.busqueda.Estado;
 import com.unmsm.busqueda.NodoDeBusqueda;

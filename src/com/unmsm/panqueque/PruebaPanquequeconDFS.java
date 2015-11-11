@@ -1,9 +1,9 @@
 package com.unmsm.panqueque;
 
 import com.unmsm.busqueda.Camino;
-import com.unmsm.busqueda.busquedas.BusquedaBFS;
+import com.unmsm.busqueda.busquedas.noinformada.BusquedaBFS;
 import com.unmsm.busqueda.Busqueda;
-import com.unmsm.busqueda.busquedas.BusquedaDFS;
+import com.unmsm.busqueda.busquedas.noinformada.BusquedaDFS;
 import com.unmsm.util.Consola;
 
 public class PruebaPanquequeconDFS {
