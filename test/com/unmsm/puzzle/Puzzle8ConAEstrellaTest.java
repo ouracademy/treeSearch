@@ -3,7 +3,7 @@ package com.unmsm.puzzle;
 import com.unmsm.busqueda.Busqueda;
 import com.unmsm.busqueda.Camino;
 import com.unmsm.busqueda.busquedas.BusquedaAEstrella;
-import com.unmsm.busqueda.heuristicas.Heuristica;
+import com.unmsm.busqueda.evaluacion.Heuristica;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

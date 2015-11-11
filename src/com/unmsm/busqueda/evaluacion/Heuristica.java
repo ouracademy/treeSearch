@@ -1,4 +1,4 @@
-package com.unmsm.busqueda.heuristicas;
+package com.unmsm.busqueda.evaluacion;
 
 import com.unmsm.busqueda.Estado;
 

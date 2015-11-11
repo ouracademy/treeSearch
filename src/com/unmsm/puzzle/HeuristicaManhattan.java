@@ -5,7 +5,7 @@
  */
 package com.unmsm.puzzle;
 
-import com.unmsm.busqueda.heuristicas.Heuristica;
+import com.unmsm.busqueda.evaluacion.Heuristica;
 import static com.unmsm.puzzle.EstadoPuzzleOcho.META;
 
 /**

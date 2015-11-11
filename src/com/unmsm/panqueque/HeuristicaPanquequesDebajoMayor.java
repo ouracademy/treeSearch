@@ -5,7 +5,7 @@
  */
 package com.unmsm.panqueque;
 
-import com.unmsm.busqueda.heuristicas.Heuristica;
+import com.unmsm.busqueda.evaluacion.Heuristica;
 
 /**
  *

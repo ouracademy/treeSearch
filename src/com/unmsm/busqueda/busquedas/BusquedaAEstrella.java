@@ -2,7 +2,7 @@ package com.unmsm.busqueda.busquedas;
 
 import com.unmsm.busqueda.Estado;
 import com.unmsm.busqueda.NodoDeBusqueda;
-import com.unmsm.busqueda.heuristicas.Heuristica;
+import com.unmsm.busqueda.evaluacion.Heuristica;
 import com.unmsm.busqueda.util.ArbolBusquedaPlantilla;
 import java.util.List;
 
