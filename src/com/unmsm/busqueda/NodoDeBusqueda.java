@@ -13,6 +13,7 @@ public class NodoDeBusqueda implements Comparable<NodoDeBusqueda>{
     protected Estado estadoActual;
     protected NodoDeBusqueda padre;
     protected double costo;
+    private final int profundidad;
 
     /**
      * Constructor para la raíz NodoDeBusqueda
@@ -23,6 +24,7 @@ public class NodoDeBusqueda implements Comparable<NodoDeBusqueda>{
         estadoActual = estado;
         padre = null;
         this.costo = 0;
+        this.profundidad = 0;
     }
 
     /**
@@ -35,6 +37,7 @@ public class NodoDeBusqueda implements Comparable<NodoDeBusqueda>{
         this.padre = padre;
         this.estadoActual = estado;
         this.costo = calculaCosto(padre, estado);
+        this.profundidad = padre.getProfundidad() + 1;
     }
 
     public Estado getEstadoActual() {
@@ -55,6 +58,10 @@ public class NodoDeBusqueda implements Comparable<NodoDeBusqueda>{
 
     private double calculaCosto(NodoDeBusqueda padre, Estado estado) {
         return padre.getCosto() + costoEntreEstados.calcular(estado, padre.getEstadoActual());
+    }
+
+    public int getProfundidad() {
+        return profundidad;
     }
 
     @Override

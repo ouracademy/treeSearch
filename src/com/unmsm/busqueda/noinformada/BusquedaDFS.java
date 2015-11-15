@@ -9,7 +9,7 @@ import java.util.Stack;
  * @author Arthur Mauricio Delgadillo
  */
 public class BusquedaDFS extends BusquedaNoInformada{
-    private Stack<NodoDeBusqueda> pila;
+    protected Stack<NodoDeBusqueda> pila;
     
     @Override
     public void inicializarEstrategiaBusqueda() {

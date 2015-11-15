@@ -17,8 +17,7 @@ public abstract class ArbolBusqueda implements Busqueda {
     public static final Prioridad PRIORIDAD_POR_DEFECTO = new PrioridadIzquierdaDerecha();
     private int conteoBusqueda;
     private CostoEntreEstados calculaCosto;
-    private Prioridad prioridad;
-    
+    private Prioridad prioridad; 
     
     public ArbolBusqueda conCostoEntreEstados(CostoEntreEstados calculaCosto) {
         this.calculaCosto = calculaCosto;
