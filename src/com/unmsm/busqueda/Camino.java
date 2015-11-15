@@ -5,7 +5,10 @@
  */
 package com.unmsm.busqueda;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -13,10 +16,10 @@ import java.util.Stack;
  * @author usuario
  */
 public class Camino implements Iterable<NodoDeBusqueda>{
-    private final Stack<NodoDeBusqueda> camino;
+    private final List<NodoDeBusqueda> camino;
     
     public Camino() {
-        camino = new Stack<>();
+        camino = new ArrayList<>();
     }
     
     public static Camino obtenerCaminoVacio(){
@@ -24,7 +27,7 @@ public class Camino implements Iterable<NodoDeBusqueda>{
     }
     
     public void add(NodoDeBusqueda nodoTemp) {
-        camino.push(nodoTemp);
+        camino.add(nodoTemp);
     }
 
     public boolean empty() {
@@ -38,6 +41,12 @@ public class Camino implements Iterable<NodoDeBusqueda>{
     
     @Override
     public Iterator<NodoDeBusqueda> iterator() {
-       return camino.iterator();
+       return voltear().iterator();
+    }
+
+    private List voltear() {
+        List caminoEnReversa = new ArrayList(camino);
+        Collections.reverse(caminoEnReversa);
+        return caminoEnReversa;
     }
 }

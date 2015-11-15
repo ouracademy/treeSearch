@@ -1,6 +1,5 @@
 package com.unmsm.busqueda.busquedas.noinformada;
 
-import com.unmsm.busqueda.busquedas.noinformada.BusquedaNoInformada;
 import com.unmsm.busqueda.NodoDeBusqueda;
 import java.util.LinkedList;
 import java.util.Queue;

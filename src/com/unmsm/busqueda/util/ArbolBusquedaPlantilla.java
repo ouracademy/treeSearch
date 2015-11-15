@@ -45,7 +45,7 @@ public abstract class ArbolBusquedaPlantilla implements Busqueda {
 
     @Override
     public Camino buscar(Estado estadoInicial) {
-        ArbolBusquedaPlantilla.this.inicializar(estadoInicial);
+        inicializar(estadoInicial);
 
         while (existeCandidato()) {
             NodoDeBusqueda candidato = escogerCandidato();
@@ -65,11 +65,14 @@ public abstract class ArbolBusquedaPlantilla implements Busqueda {
         conteoBusqueda = 1;
         inicializarEstrategiaBusqueda();
         inicializarPrioridad();
-        NodoDeBusqueda raiz = new NodoDeBusqueda(estadoInicial);
-        agregarCandidato(raiz);
+        agregarCandidato(obtenerRaiz(estadoInicial));
         inicializarCostoEntreEstados();
     }
 
+    private NodoDeBusqueda obtenerRaiz(Estado estado){
+        return new NodoDeBusqueda(estado);
+    }
+    
     private void inicializarCostoEntreEstados() {
         if (calculaCosto == null) {
             calculaCosto = new CostoPorDefecto();
@@ -139,4 +142,6 @@ public abstract class ArbolBusquedaPlantilla implements Busqueda {
     public abstract void agregarCandidato(NodoDeBusqueda candidato);
 
     public abstract void agregarNodos(NodoDeBusqueda nodoEnExpansion, List<Estado> sucesores);
+    
+    protected abstract NodoDeBusqueda obtenerNodo(NodoDeBusqueda nodoPadre, Estado estado);
 }

@@ -1,4 +1,4 @@
-package com.unmsm.busqueda.busquedas.informada;
+package com.unmsm.busqueda.busquedas.informada.aestrella;
 
 import com.unmsm.busqueda.Estado;
 import com.unmsm.busqueda.NodoDeBusqueda;
@@ -16,7 +16,7 @@ import java.util.List;
 public class BusquedaAEstrella extends ArbolBusquedaPlantilla{
 
     private ListaOrdenadaSE<NodoDeBusqueda> listaOrdenada;
-    private Heuristica heuristica;
+    private final Heuristica heuristica;
 
     public BusquedaAEstrella(Heuristica heuristica) {
         this.heuristica = heuristica;
@@ -42,9 +42,10 @@ public class BusquedaAEstrella extends ArbolBusquedaPlantilla{
         listaOrdenada.insertar(nodoEnExpansion);
     }
     
-    public NodoDeBusqueda obtenerNodo(NodoDeBusqueda nodoPadre, Estado estado) {
+    @Override
+    protected NodoDeBusqueda obtenerNodo(NodoDeBusqueda nodoPadre, Estado estado) {
         //Un nodo de busqueda con heuristica
-        return new NodoDeBusqueda(nodoPadre, estado, obtenerHeuristica(estado));
+        return new NodoDeBusquedaAEstrella(nodoPadre, estado, obtenerHeuristica(estado));
     }
     
     @Override

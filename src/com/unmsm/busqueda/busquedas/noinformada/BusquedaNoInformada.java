@@ -9,13 +9,7 @@ import java.util.List;
  *
  * @author Arthur Mauricio Delgadillo
  */
-public abstract class BusquedaNoInformada extends ArbolBusquedaPlantilla {
-
-    public NodoDeBusqueda obtenerNodo(NodoDeBusqueda nodoPadre, Estado estado) {
-        //Un nodo de busqueda simple sin funciones de evaluacion
-        return new NodoDeBusqueda(nodoPadre, estado);
-    }
-    
+public abstract class BusquedaNoInformada extends ArbolBusquedaPlantilla {    
     @Override
     public void agregarNodos(NodoDeBusqueda nodoEnExpansion, List<Estado> sucesores) {
         for (Estado sucesor : sucesores) {
@@ -24,5 +18,11 @@ public abstract class BusquedaNoInformada extends ArbolBusquedaPlantilla {
                 agregarCandidato(nuevoNodo);
             }
         }
+    }
+    
+    @Override
+    protected NodoDeBusqueda obtenerNodo(NodoDeBusqueda nodoPadre, Estado estado) {
+        //Un nodo de busqueda simple sin funciones de evaluacion
+        return new NodoDeBusqueda(nodoPadre, estado);
     }
 }
