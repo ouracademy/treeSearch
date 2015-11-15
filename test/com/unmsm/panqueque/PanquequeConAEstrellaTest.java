@@ -2,8 +2,7 @@ package com.unmsm.panqueque;
 
 import com.unmsm.busqueda.Busqueda;
 import com.unmsm.busqueda.Camino;
-import com.unmsm.busqueda.busquedas.informada.aestrella.BusquedaAEstrella;
-import com.unmsm.busqueda.busquedas.prioridad.Prioridad;
+import com.unmsm.busqueda.informada.aestrella.BusquedaAEstrella;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -16,7 +15,6 @@ public class PanquequeConAEstrellaTest {
     public void AEstrellaValido() {
         Integer[] a = { 4,2,3,1};
         Busqueda busqueda = new BusquedaAEstrella(new HeuristicaPanquequesDebajoMayor())
-                .conPrioridad(Prioridad.Tipos.DERECHA_A_IZQUIERDA)
                 .conCostoEntreEstados(new CostoCantidadPanquequesAGirar());
         Camino caminoSolucion = busqueda.buscar(new EstadoPanqueques(a));
         assertEquals((int)caminoSolucion.getCosto(), 11);

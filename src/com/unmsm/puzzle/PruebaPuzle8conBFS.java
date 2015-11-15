@@ -1,7 +1,7 @@
 package com.unmsm.puzzle;
 
 import com.unmsm.busqueda.Camino;
-import com.unmsm.busqueda.busquedas.noinformada.BusquedaBFS;
+import com.unmsm.busqueda.noinformada.BusquedaBFS;
 import com.unmsm.busqueda.Busqueda;
 import com.unmsm.util.Consola;
 

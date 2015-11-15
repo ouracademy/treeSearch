@@ -1,15 +1,15 @@
-package com.unmsm.busqueda.busquedas.noinformada;
+package com.unmsm.busqueda.noinformada;
 
 import com.unmsm.busqueda.Estado;
 import com.unmsm.busqueda.NodoDeBusqueda;
-import com.unmsm.busqueda.util.ArbolBusquedaPlantilla;
+import com.unmsm.busqueda.ArbolBusqueda;
 import java.util.List;
 
 /**
  *
  * @author Arthur Mauricio Delgadillo
  */
-public abstract class BusquedaNoInformada extends ArbolBusquedaPlantilla {    
+public abstract class BusquedaNoInformada extends ArbolBusqueda {    
     @Override
     public void agregarNodos(NodoDeBusqueda nodoEnExpansion, List<Estado> sucesores) {
         for (Estado sucesor : sucesores) {

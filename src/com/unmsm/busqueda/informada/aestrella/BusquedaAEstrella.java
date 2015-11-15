@@ -1,10 +1,10 @@
-package com.unmsm.busqueda.busquedas.informada.aestrella;
+package com.unmsm.busqueda.informada.aestrella;
 
 import com.unmsm.busqueda.Estado;
 import com.unmsm.busqueda.NodoDeBusqueda;
-import com.unmsm.busqueda.busquedas.ListaOrdenadaSE;
+import com.unmsm.busqueda.util.ListaOrdenadaSE;
 import com.unmsm.busqueda.evaluacion.Heuristica;
-import com.unmsm.busqueda.util.ArbolBusquedaPlantilla;
+import com.unmsm.busqueda.ArbolBusqueda;
 import java.util.List;
 
 /**
@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Arthur Mauricio Delgadillo
  */
-public class BusquedaAEstrella extends ArbolBusquedaPlantilla{
+public class BusquedaAEstrella extends ArbolBusqueda{
 
     private ListaOrdenadaSE<NodoDeBusqueda> listaOrdenada;
     private final Heuristica heuristica;

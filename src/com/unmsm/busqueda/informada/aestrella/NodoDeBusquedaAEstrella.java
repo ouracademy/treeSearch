@@ -1,4 +1,4 @@
-package com.unmsm.busqueda.busquedas.informada.aestrella;
+package com.unmsm.busqueda.informada.aestrella;
 
 import com.unmsm.busqueda.Estado;
 import com.unmsm.busqueda.NodoDeBusqueda;

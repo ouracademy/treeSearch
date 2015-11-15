@@ -1,4 +1,4 @@
-package com.unmsm.busqueda.busquedas.noinformada;
+package com.unmsm.busqueda.noinformada;
 
 import com.unmsm.busqueda.NodoDeBusqueda;
 import java.util.LinkedList;

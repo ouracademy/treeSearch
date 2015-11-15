@@ -2,7 +2,7 @@ package com.unmsm.puzzle;
 
 import com.unmsm.busqueda.Busqueda;
 import com.unmsm.busqueda.Camino;
-import com.unmsm.busqueda.busquedas.noinformada.BusquedaDFS;
+import com.unmsm.busqueda.noinformada.BusquedaDFS;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Ignore;

@@ -1,4 +1,4 @@
-package com.unmsm.busqueda.busquedas;
+package com.unmsm.busqueda.util;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
