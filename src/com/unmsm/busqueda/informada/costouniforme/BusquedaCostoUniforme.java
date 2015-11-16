@@ -3,16 +3,9 @@ package com.unmsm.busqueda.informada.costouniforme;
 import com.unmsm.busqueda.Estado;
 import com.unmsm.busqueda.NodoDeBusqueda;
 import com.unmsm.busqueda.util.ListaOrdenadaSE;
-import com.unmsm.busqueda.evaluacion.Heuristica;
 import com.unmsm.busqueda.ArbolBusqueda;
 import java.util.List;
 
-/**
- * Clase que realiza busqueda A* segun una heuristica ver Strategy pattern en
- * GOF patterns
- *
- * @author Arthur Mauricio Delgadillo
- */
 public class BusquedaCostoUniforme extends ArbolBusqueda{
 
     private ListaOrdenadaSE<NodoDeBusqueda> listaOrdenada;
