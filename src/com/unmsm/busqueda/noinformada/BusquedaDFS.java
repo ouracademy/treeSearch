@@ -7,7 +7,7 @@ import com.unmsm.busqueda.NodoDeBusqueda;
 
 
 /**
- * Define una búsqueda BFS
+ * Define una bÃºsqueda BFS
  * Usando una pila para los candidatos a buscar
  * @author Arthur Mauricio Delgadillo
  */

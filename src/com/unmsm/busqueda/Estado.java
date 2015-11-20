@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * 
- * Interfaz Estado desde el cual el estado del problema hereda. Define un método
+ * Interfaz Estado desde el cual el estado del problema hereda. Define un mÃ©todo
  * para revisar si el estado actual es una meta, generar sucesores, y encontrar
  * el costo para llegar al estado actual.
  */

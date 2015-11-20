@@ -31,7 +31,7 @@ public abstract class EstrategiaBusqueda {
     }
     
     /*
-     * M�todo de ayuda para revisar si un NodoDeBusqueda ya fue evaluado.
+     * Método de ayuda para revisar si un NodoDeBusqueda ya fue evaluado.
      * Devuelve true si es así, false en caso contrario.
      */
     protected boolean esRepetido(NodoDeBusqueda n) {
