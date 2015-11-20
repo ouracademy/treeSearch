@@ -8,36 +8,28 @@ import com.unmsm.busqueda.evaluacion.CostoPorDefecto;
 import java.util.List;
 
 /**
- * Una clase que sirve como plantilla para crear otros tipos de
- * busqueda de arboles ver Template Method en GOF patterns
+ * Clase que busca segun una estrategia de busqueda
+ * escogida definiendo la estructura del algoritmo
+ * de una busqueda en un arbol
  *
  * @author Arthur Mauricio Delgadillo
+ * @see EstrategiaBusqueda
+ * 
  */
-public abstract class ArbolBusqueda implements Busqueda {
-    public static final Prioridad PRIORIDAD_POR_DEFECTO = new PrioridadIzquierdaDerecha();
+public class ArbolBusqueda implements Busqueda {
     private int conteoBusqueda;
     private CostoEntreEstados calculaCosto;
-    private Prioridad prioridad; 
+    private EstrategiaBusqueda estrategiaBusqueda;
+    
+    public ArbolBusqueda(EstrategiaBusqueda estrategiaBusqueda){
+        this.estrategiaBusqueda = estrategiaBusqueda;
+    }
     
     public ArbolBusqueda conCostoEntreEstados(CostoEntreEstados calculaCosto) {
         this.calculaCosto = calculaCosto;
         return this;
     }
-    
-    public ArbolBusqueda conPrioridad(Prioridad.Tipos tipoPrioridad) {
-        if(Prioridad.Tipos.IZQUIERDA_A_DERECHA == tipoPrioridad){
-            prioridad = new PrioridadIzquierdaDerecha();
-        }else if(Prioridad.Tipos.DERECHA_A_IZQUIERDA == tipoPrioridad){
-            prioridad = new PrioridadDerechaIzquierda();
-        }
-        return this;
-    }
-    
-    public ArbolBusqueda conPrioridad(Prioridad prioridad) {
-        this.prioridad = prioridad;
-        return this;
-    }
-    
+        
     @Override
     public Camino buscar(Estado estadoInicial) {
         inicializar(estadoInicial);
@@ -55,15 +47,26 @@ public abstract class ArbolBusqueda implements Busqueda {
 
         return Camino.obtenerCaminoVacio();
     }
-
+    
     private void inicializar(Estado estadoInicial) {
         conteoBusqueda = 1;
-        inicializarEstrategiaBusqueda();
-        inicializarPrioridad();
+        estrategiaBusqueda.inicializar();
         agregarCandidato(obtenerRaiz(estadoInicial));
         inicializarCostoEntreEstados();
     }
-
+    
+    private void agregarCandidato(NodoDeBusqueda candidato){
+        estrategiaBusqueda.agregarCandidato(candidato);
+    }
+    
+    private boolean existeCandidato(){
+        return estrategiaBusqueda.existeCandidato();
+    }
+    
+    private NodoDeBusqueda escogerCandidato(){
+        return estrategiaBusqueda.escogerCandidato();
+    }
+    
     private NodoDeBusqueda obtenerRaiz(Estado estado){
         return new NodoDeBusqueda(estado);
     }
@@ -73,12 +76,6 @@ public abstract class ArbolBusqueda implements Busqueda {
             calculaCosto = new CostoPorDefecto();
         }
         NodoDeBusqueda.costoEntreEstados = calculaCosto;
-    }
-    
-    private void inicializarPrioridad() {
-        if (prioridad == null) {
-            prioridad = PRIORIDAD_POR_DEFECTO;
-        }
     }
     
     private boolean esMeta(NodoDeBusqueda nodoABuscar) {
@@ -91,9 +88,13 @@ public abstract class ArbolBusqueda implements Busqueda {
      * la cola
      */
     private void expandirArbol(NodoDeBusqueda nodoEnExpansion) {
-        agregarNodos(nodoEnExpansion, prioridad.expandirSucesores(nodoEnExpansion));
+        agregarNodos(nodoEnExpansion, estrategiaBusqueda.expandirSucesores(nodoEnExpansion));
     }
 
+    private void agregarNodos(NodoDeBusqueda nodoEnExpansion, List<Estado> sucesores){
+        estrategiaBusqueda.agregarNodos(nodoEnExpansion, sucesores);
+    }
+    
     /*
      * Método de ayuda para revisar si un NodoDeBusqueda ya fue evaluado.
      * Devuelve true si es así, false en caso contrario.
@@ -127,16 +128,4 @@ public abstract class ArbolBusqueda implements Busqueda {
     public int getConteoBusqueda() {
         return conteoBusqueda;
     }
-    
-    public abstract void inicializarEstrategiaBusqueda();
-
-    public abstract boolean existeCandidato();
-
-    public abstract NodoDeBusqueda escogerCandidato();
-
-    public abstract void agregarCandidato(NodoDeBusqueda candidato);
-
-    public abstract void agregarNodos(NodoDeBusqueda nodoEnExpansion, List<Estado> sucesores);
-    
-    protected abstract NodoDeBusqueda obtenerNodo(NodoDeBusqueda nodoPadre, Estado estado);
 }

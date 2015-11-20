@@ -1,5 +1,6 @@
 package com.unmsm.puzzle;
 
+import com.unmsm.busqueda.ArbolBusqueda;
 import com.unmsm.busqueda.Busqueda;
 import com.unmsm.busqueda.Camino;
 import com.unmsm.busqueda.informada.aestrella.BusquedaAEstrella;
@@ -17,7 +18,7 @@ public class Puzzle8ConAEstrellaTest {
     public void AEstrellaConHeuristicaManhattan() {
         int[] a = {1, 2, 3, 4, 5, 6, 0, 7, 8};
         Heuristica heuristica = new HeuristicaManhattan();
-        Busqueda busqueda = new BusquedaAEstrella(heuristica);
+        Busqueda busqueda = new ArbolBusqueda(new BusquedaAEstrella(heuristica));
         Camino caminoSolucion = busqueda.buscar(new EstadoPuzzleOcho(a));
         assertEquals((int)caminoSolucion.getCosto(), 2);
         assertEquals(busqueda.getConteoBusqueda(), 3);
@@ -27,7 +28,7 @@ public class Puzzle8ConAEstrellaTest {
     public void AEstrellaConHeuristicaFueraLugar() {
         int[] a = {1, 2, 3, 4, 5, 6, 0, 7, 8};
         Heuristica heuristica = new HeuristicaFueraLugar();
-        Busqueda busqueda = new BusquedaAEstrella(heuristica);
+        Busqueda busqueda = new ArbolBusqueda(new BusquedaAEstrella(heuristica));
         Camino caminoSolucion = busqueda.buscar(new EstadoPuzzleOcho(a));
         assertEquals((int)caminoSolucion.getCosto(), 2);
         assertEquals(busqueda.getConteoBusqueda(), 3);
@@ -37,7 +38,7 @@ public class Puzzle8ConAEstrellaTest {
     public void AEstrellaConHeuristicaManhattanOtraPrueba() {
         int[] a = { 3, 1, 2, 4, 5, 6, 7, 0, 8};
         Heuristica heuristica = new HeuristicaManhattan();
-        Busqueda busqueda = new BusquedaAEstrella(heuristica);
+        Busqueda busqueda = new ArbolBusqueda(new BusquedaAEstrella(heuristica));
         Camino caminoSolucion = busqueda.buscar(new EstadoPuzzleOcho(a));
         assertEquals((int)caminoSolucion.getCosto(), 15);
         assertEquals(busqueda.getConteoBusqueda(), 243);
@@ -47,7 +48,7 @@ public class Puzzle8ConAEstrellaTest {
     public void AEstrellaConHeuristicaFueraLugarOtraPrueba() {
         int[] a = { 3, 1, 2, 4, 5, 6, 7, 0, 8};
         Heuristica heuristica = new HeuristicaFueraLugar();
-        Busqueda busqueda = new BusquedaAEstrella(heuristica);
+        Busqueda busqueda = new ArbolBusqueda(new BusquedaAEstrella(heuristica));
         Camino caminoSolucion = busqueda.buscar(new EstadoPuzzleOcho(a));
         assertEquals((int)caminoSolucion.getCosto(), 15);
         assertEquals(busqueda.getConteoBusqueda(), 563);

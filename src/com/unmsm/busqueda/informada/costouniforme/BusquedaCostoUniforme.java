@@ -3,15 +3,15 @@ package com.unmsm.busqueda.informada.costouniforme;
 import com.unmsm.busqueda.Estado;
 import com.unmsm.busqueda.NodoDeBusqueda;
 import com.unmsm.busqueda.util.ListaOrdenadaSE;
-import com.unmsm.busqueda.ArbolBusqueda;
+import com.unmsm.busqueda.EstrategiaBusqueda;
 import java.util.List;
 
-public class BusquedaCostoUniforme extends ArbolBusqueda{
+public class BusquedaCostoUniforme extends EstrategiaBusqueda{
 
     private ListaOrdenadaSE<NodoDeBusqueda> listaOrdenada;
     
     @Override
-    public void inicializarEstrategiaBusqueda() {
+    public void inicializarCandidatos() {
         listaOrdenada = new ListaOrdenadaSE();
     }
 

@@ -12,7 +12,7 @@ public class BusquedaDFS extends BusquedaNoInformada{
     protected Stack<NodoDeBusqueda> pila;
     
     @Override
-    public void inicializarEstrategiaBusqueda() {
+    public void inicializarCandidatos() {
         pila = new Stack();
     }
 

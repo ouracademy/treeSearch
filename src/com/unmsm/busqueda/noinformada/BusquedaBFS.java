@@ -15,7 +15,7 @@ final public class BusquedaBFS extends BusquedaNoInformada{
     protected Queue<NodoDeBusqueda> cola;
 
     @Override
-    public void inicializarEstrategiaBusqueda() {
+    public void inicializarCandidatos() {
         cola = new LinkedList();
     }
 

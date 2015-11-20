@@ -3,14 +3,14 @@ package com.unmsm.busqueda.informada.golosa;
 import com.unmsm.busqueda.Estado;
 import com.unmsm.busqueda.NodoDeBusqueda;
 import com.unmsm.busqueda.evaluacion.Heuristica;
-import com.unmsm.busqueda.ArbolBusqueda;
+import com.unmsm.busqueda.EstrategiaBusqueda;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
 
-public class BusquedaGolosa extends ArbolBusqueda {
+public class BusquedaGolosa extends EstrategiaBusqueda {
 
     private Stack<NodoDeBusqueda> cola;
     private final Heuristica heuristica;
@@ -20,7 +20,7 @@ public class BusquedaGolosa extends ArbolBusqueda {
     }
 
     @Override
-    public void inicializarEstrategiaBusqueda() {
+    public void inicializarCandidatos() {
         cola = new Stack<>();
     }
 

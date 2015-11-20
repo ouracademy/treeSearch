@@ -4,16 +4,18 @@ import com.unmsm.busqueda.ArbolBusqueda;
 import com.unmsm.busqueda.Camino;
 import com.unmsm.busqueda.Busqueda;
 import com.unmsm.busqueda.EstrategiaBusqueda;
-import com.unmsm.busqueda.informada.aestrella.BusquedaAEstrella;
+import com.unmsm.busqueda.noinformada.BusquedaDFSLimitada;
+import com.unmsm.busqueda.prioridad.Prioridad;
 import com.unmsm.util.Consola;
 
-public class PruebaPanquequeconAEstrella {
+public class PruebaPanquequeconDFSLimitado {
 
     public static void main(String[] args) {
-        Integer[] a = { 4,2,3,1};
-        EstrategiaBusqueda estrategiaBusqueda = new BusquedaAEstrella(new HeuristicaPanquequesDebajoMayor());
-        Busqueda busqueda = new ArbolBusqueda(estrategiaBusqueda)
-                .conCostoEntreEstados(new CostoCantidadPanquequesAGirar());
+        Integer[] a = { 4,1,3,2};
+        int limite = 3;
+        EstrategiaBusqueda estrategiaBusqueda = new BusquedaDFSLimitada(limite)
+                .conPrioridad(Prioridad.Tipos.DERECHA_A_IZQUIERDA);
+        Busqueda busqueda = new ArbolBusqueda(estrategiaBusqueda);
         Camino caminoSolucion = busqueda.buscar(new EstadoPanqueques(a));
 
         Consola.mostrar(caminoSolucion);

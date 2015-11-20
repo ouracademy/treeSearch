@@ -4,7 +4,7 @@ import com.unmsm.busqueda.Estado;
 import com.unmsm.busqueda.NodoDeBusqueda;
 import com.unmsm.busqueda.util.ListaOrdenadaSE;
 import com.unmsm.busqueda.evaluacion.Heuristica;
-import com.unmsm.busqueda.ArbolBusqueda;
+import com.unmsm.busqueda.EstrategiaBusqueda;
 import java.util.List;
 
 /**
@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Arthur Mauricio Delgadillo
  */
-public class BusquedaAEstrella extends ArbolBusqueda{
+public class BusquedaAEstrella extends EstrategiaBusqueda{
 
     private ListaOrdenadaSE<NodoDeBusqueda> listaOrdenada;
     private final Heuristica heuristica;
@@ -23,7 +23,7 @@ public class BusquedaAEstrella extends ArbolBusqueda{
     }
     
     @Override
-    public void inicializarEstrategiaBusqueda() {
+    public void inicializarCandidatos() {
         listaOrdenada = new ListaOrdenadaSE();
     }
 
