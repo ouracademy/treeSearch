@@ -17,6 +17,6 @@ public class BusquedaDFSLimitada extends BusquedaDFS{
     @Override
     public void agregarCandidato(NodoDeBusqueda nuevoNodo) {
         if(nuevoNodo.getProfundidad()  <= limiteProfundidad)
-            pila.add(nuevoNodo);
+            pila.addFirst(nuevoNodo);
     }
 }

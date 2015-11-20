@@ -12,20 +12,27 @@ import java.util.List;
  */
 public class EstadoPanqueques implements Estado {
 
-    public static Integer[] META = new Integer[]{1, 2, 3, 4};
+	private static final Integer[] META_DEFECTO = new Integer[]{1, 2, 3, 4};
+	private Integer[] meta;
     private Integer[] estadoActual;
     
     public EstadoPanqueques() {
         this.estadoActual = new Integer[]{4, 2, 3, 1};
+        this.meta = META_DEFECTO;
     }
 
     public EstadoPanqueques(Integer[] estadoActual) {
         this.estadoActual = estadoActual;
+        this.meta = META_DEFECTO;
+    }
+    
+    public void cambiarMeta(Integer[] meta){
+    	this.meta = meta;
     }
 
     @Override
     public boolean esMeta() {
-        return Arrays.equals(META, estadoActual);
+        return Arrays.equals(meta, estadoActual);
     }
 
     @Override
@@ -74,13 +81,6 @@ public class EstadoPanqueques implements Estado {
         final EstadoPanqueques other = (EstadoPanqueques) obj;
         return this.igual(other);
     }
-    
-    
-
-//    @Override
-//    public Collection<Object> getElements() {
-//        return Arrays.asList((Object[]) estadoActual);
-//    }
 
     @Override
     public String toString() {

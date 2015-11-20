@@ -14,6 +14,7 @@ import com.unmsm.busqueda.NodoDeBusqueda;
  * @author Arthur Mauricio Delgadillo
  */
 public class Consola {
+	
 
     public static void mostrar(Camino caminoSolucion) {
         if (caminoSolucion.empty()) {

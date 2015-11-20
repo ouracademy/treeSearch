@@ -22,7 +22,7 @@ public class EstadoPanquequeTest {
     @Before
     public void setUp() {
         instance = new EstadoPanqueques(new Integer[]{4,2,3,1});
-        EstadoPanqueques.META = new Integer[]{1,2,3,4};
+        instance.cambiarMeta(new Integer[]{1,2,3,4});
     }
     
     /**

@@ -8,8 +8,8 @@ import java.util.Arrays;
 /**
  *
  * EstadoPuzleOcho define un estado para el problema de puzle 8. El tablero se
- * representa por un arreglo unidimensional simple, se intenta crear la ilusiÃ³n
- * que la representaciÃ³n del estado es bidimensional. En terminos de las piezas
+ * representa por un arreglo unidimensional simple, se intenta crear la ilusión
+ * que la representación del estado es bidimensional. En terminos de las piezas
  * actuales, "0" representa el hueco en el tablero, y "0" tiene un tratamiento
  * especial cuando se generan sucesores. No representamos "0" como una pieza en
  * si misma, es el "hueco" en el tablero.
@@ -133,7 +133,7 @@ public class EstadoPuzzleOcho implements Estado {
     }
 
     /**
-     * Sobrecarga el mÃ©todo igual para comparar dos estados.
+     * Sobrecarga el método igual para comparar dos estados.
      *
      * @return true o false, dependiendo si los estados son iguales
      */

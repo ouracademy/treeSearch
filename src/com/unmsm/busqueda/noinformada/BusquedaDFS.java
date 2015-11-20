@@ -1,19 +1,22 @@
 package com.unmsm.busqueda.noinformada;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 import com.unmsm.busqueda.NodoDeBusqueda;
-import java.util.Stack;
+
 
 /**
- * Define una bÃºsqueda BFS
+ * Define una búsqueda BFS
  * Usando una pila para los candidatos a buscar
  * @author Arthur Mauricio Delgadillo
  */
 public class BusquedaDFS extends BusquedaNoInformada{
-    protected Stack<NodoDeBusqueda> pila;
+    protected Deque<NodoDeBusqueda> pila;
     
     @Override
     public void inicializarCandidatos() {
-        pila = new Stack();
+        pila = new ArrayDeque<>();
     }
 
     @Override
@@ -28,6 +31,6 @@ public class BusquedaDFS extends BusquedaNoInformada{
 
     @Override
     public void agregarCandidato(NodoDeBusqueda nuevoNodo) {
-        pila.add(nuevoNodo);
+        pila.addFirst(nuevoNodo);
     }
 }

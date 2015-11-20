@@ -1,11 +1,10 @@
 package com.unmsm.busqueda;
 
-import com.unmsm.busqueda.evaluacion.CostoEntreEstados;
 import java.util.List;
 
 /**
  * 
- * Interfaz Estado desde el cual el estado del problema hereda. Define un mÃ©todo
+ * Interfaz Estado desde el cual el estado del problema hereda. Define un método
  * para revisar si el estado actual es una meta, generar sucesores, y encontrar
  * el costo para llegar al estado actual.
  */

@@ -17,7 +17,10 @@ import org.junit.runners.Suite;
  * @author Arthur Mauricio Delgadillo
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({com.unmsm.panqueque.PanquequeConDFSTest.class, com.unmsm.panqueque.PanquequeConAEstrellaTest.class, com.unmsm.panqueque.PanquequeConCostoUniformeTest.class, com.unmsm.panqueque.EstadoPanquequeTest.class, com.unmsm.panqueque.PanquequeConBFSTest.class, com.unmsm.panqueque.PanquequeConGolosaTest.class, com.unmsm.panqueque.PanquequeConDFSLimitadoTest.class})
+@Suite.SuiteClasses({PanquequeConDFSTest.class, PanquequeConAEstrellaTest.class, 
+	PanquequeConCostoUniformeTest.class, EstadoPanquequeTest.class, 
+	PanquequeConBFSTest.class, PanquequeConGolosaTest.class,
+	PanquequeConDFSLimitadoTest.class})
 public class PanquequeTestSuite {
 
     @BeforeClass

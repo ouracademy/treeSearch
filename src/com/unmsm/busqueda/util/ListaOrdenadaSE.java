@@ -98,27 +98,32 @@ public class ListaOrdenadaSE<Tipo extends Comparable<Tipo>> implements Iterable<
     }
 
     //Devuelve una representación de cadena de esta lista
-    public String toString() {
+    @Override
+	public String toString() {
         StringBuilder s = new StringBuilder();
         for (Tipo item : this)
             s.append(item + " ");
         return s.toString();
     }
        
-    public Iterator<Tipo> iterator()  { 
+    @Override
+	public Iterator<Tipo> iterator()  { 
         return new IteradorInicioAlFinal();  
     }
 
     private class IteradorInicioAlFinal implements Iterator<Tipo> {
         private Nodo actual = inicio;
         
-        public boolean hasNext() {
+        @Override
+		public boolean hasNext() {
             return actual != null;                     
         }
         
-        public void remove(){ throw new UnsupportedOperationException();  }
+        @Override
+		public void remove(){ throw new UnsupportedOperationException();  }
 
-        public Tipo next() {
+        @Override
+		public Tipo next() {
             if (!hasNext()) throw new NoSuchElementException();
             Tipo item = actual.item;
             actual = actual.prox; 
