@@ -53,7 +53,7 @@ public class NodoDeBusqueda implements Comparable<NodoDeBusqueda>{
     }
 
     public List<Estado> expandir() {
-        return this.getEstadoActual().generarSucesores();
+        return this.estadoActual.generarSucesores();
     }
 
     private double calculaCosto(NodoDeBusqueda padre, Estado estado) {
