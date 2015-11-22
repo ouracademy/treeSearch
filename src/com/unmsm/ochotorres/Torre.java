@@ -2,7 +2,7 @@ package com.unmsm.ochotorres;
 
 import com.unmsm.ochotorres.Tablero.Celda;
 
-class Torre implements Pieza {
+public class Torre implements Pieza {
 
     @Override
     public void bloquear(Tablero tablero, Celda celda) {

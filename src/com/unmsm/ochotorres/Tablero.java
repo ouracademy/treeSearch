@@ -4,10 +4,10 @@ import java.util.Arrays;
 
 public class Tablero {
 
-    public static final int DIMENSION_X = 8;
-    public static final int DIMENSION_Y = 8;
+    public static  int DIMENSION_X = 8;
+    public static  int DIMENSION_Y = 8;
     private final Celda[][] matriz;
-    private int cantidadPiezas;
+    public int cantidadPiezas;
 
     public Tablero() {
         matriz = new Celda[DIMENSION_X][DIMENSION_Y];
@@ -90,6 +90,10 @@ public class Tablero {
         public String toString() {
             return String.format("%s %d %s %d %s %11s", "(", posicionX, ",", posicionY, ")=", estado);
 
+        }
+        
+        public Estado obtenerEstado(){
+            return estado;
         }
     }
 

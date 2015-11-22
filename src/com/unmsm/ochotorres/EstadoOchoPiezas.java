@@ -16,13 +16,14 @@ public class EstadoOchoPiezas implements Estado {
     public boolean esMeta() {
         //que el tablero contenga 8 torres sin hacerse dano
         //que esten 8 colocados 
-        //cada pieza no dane a nadie 
-
-        return true;
+        return this.tablero.cantidadPiezas==8;
     }
 
     @Override
     public List<Estado> generarSucesores() {
+       
+        
+        
         return null;
     }
 
