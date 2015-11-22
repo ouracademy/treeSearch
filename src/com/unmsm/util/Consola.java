@@ -8,6 +8,7 @@ package com.unmsm.util;
 import com.unmsm.busqueda.Camino;
 import com.unmsm.busqueda.Estado;
 import com.unmsm.busqueda.NodoDeBusqueda;
+import java.util.Queue;
 
 /**
  *
@@ -15,12 +16,19 @@ import com.unmsm.busqueda.NodoDeBusqueda;
  */
 public class Consola {
 	
+    public static void mostrar(Queue<NodoDeBusqueda> cola){
+        System.out.println("Nodos salidos de la cola:");
+        for (NodoDeBusqueda nodo : cola) {
+            mostrar(nodo.getEstadoActual());
+        }
+        System.out.println("-------------");
+    }
 
     public static void mostrar(Camino caminoSolucion) {
         if (caminoSolucion.empty()) {
             System.out.println("!Error! No se encontró una solución!");
         } else {
-
+            System.out.println("Camino a solucion:");
             mostrarEstados(caminoSolucion);
         }
     }

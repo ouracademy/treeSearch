@@ -1,5 +1,7 @@
 package com.unmsm.busqueda;
 
+import java.util.Queue;
+
 /**
  * @author Arthur Mauricio Delgadillo
  */

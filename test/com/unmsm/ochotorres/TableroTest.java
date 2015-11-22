@@ -5,12 +5,6 @@
  */
 package com.unmsm.ochotorres;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -20,30 +14,11 @@ import static org.junit.Assert.*;
  */
 public class TableroTest {
 
-    public TableroTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
-
     /**
      * Test of agregarPieza method, of class Tablero.
      */
     @Test
-    public void testAgregarPieza() throws FueraLimiteException {
+    public void testAgregarPieza() {
         System.out.println("agregarPieza");
         int posicionX = 1;
         int posicionY = 2;
@@ -51,20 +26,6 @@ public class TableroTest {
         Tablero instance = new Tablero();
         instance.agregarPieza(posicionX, posicionY, pieza);
         assertFalse(instance.getCelda(posicionX, posicionY).estaLibre());
-    }
-    
-    /**
-     * Test of agregarPieza method, of class Tablero.
-     */
-    @Test(expected = FueraLimiteException.class)
-    public void testAgregarPiezaFueraRango() throws FueraLimiteException {
-        System.out.println("agregarPieza");
-        int posicionX = -1;
-        int posicionY = 100;
-        Pieza pieza = new Torre();
-        Tablero instance = new Tablero();
-        instance.agregarPieza(posicionX, posicionY, pieza);
-        
     }
 
     /**
@@ -78,6 +39,18 @@ public class TableroTest {
         Tablero instance = new Tablero();
         Tablero.Celda result = instance.getCelda(posicionX, posicionY);
         assertNotNull(result);
+    }
+    
+    /**
+     * Test of getCelda method, of class Tablero.
+     */
+    @Test(expected = FueraLimiteException.class)
+    public void testGetCeldaFueraRango() {
+        System.out.println("getCeldaFueraRango");
+         int posicionX = -1;
+        int posicionY = 100;
+        Tablero instance = new Tablero();
+        instance.getCelda(posicionX, posicionY);
     }
 
 }

@@ -10,12 +10,20 @@ import com.unmsm.util.Consola;
 
 public class PruebaTorreconBFS {
 
-    public static void main(String[] args) throws FueraLimiteException {
+      
         
-        
+
+    public static void main(String[] args){
+
         Tablero tablero = new Tablero();
+
        // tablero.agregarPieza(1,2, new Torre());
        // tablero.agregarPieza(7,2, new Torre());
+
+        
+        tablero.agregarPieza(1,2, new Torre());
+        tablero.agregarPieza(7,2, new Torre());
+
         System.out.println(tablero);
 //        Estado estadoInicial = new EstadoOchoPiezas(tablero);
 //        Busqueda busqueda = new ArbolBusqueda(new BusquedaBFS());

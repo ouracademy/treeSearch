@@ -15,9 +15,10 @@ public class PruebaPanquequeconDFSLimitado {
         int limite = 3;
         EstrategiaBusqueda estrategiaBusqueda = new BusquedaDFSLimitada(limite)
                 .conPrioridad(Prioridad.Tipos.DERECHA_A_IZQUIERDA);
-        Busqueda busqueda = new ArbolBusqueda(estrategiaBusqueda);
+        ArbolBusqueda busqueda = new ArbolBusqueda(estrategiaBusqueda);
         Camino caminoSolucion = busqueda.buscar(new EstadoPanqueques(a));
-
+        
+        Consola.mostrar(busqueda.obtenerColaDecolados());
         Consola.mostrar(caminoSolucion);
         System.out.println("Número de nodos examinados: "
                     + busqueda.getConteoBusqueda());
