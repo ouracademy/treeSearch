@@ -5,7 +5,10 @@
  */
 package com.unmsm.ochotorres.interfazgrafica;
 
+import com.unmsm.ochotorres.FueraLimiteException;
 import com.unmsm.ochotorres.Tablero;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -32,26 +35,24 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
     private void initComponents() {
 
         panel = new javax.swing.JPanel();
-        panelTablero = new com.unmsm.ochotorres.interfazgrafica.TableroPresenter();
+        tableroPresenter = new com.unmsm.ochotorres.interfazgrafica.TableroPresenter();
         jToolBar1 = new javax.swing.JToolBar();
         fila = new javax.swing.JLabel();
-        txtFilas = new javax.swing.JTextField();
-        columna = new javax.swing.JLabel();
-        txtColumnas = new javax.swing.JTextField();
+        dimension = new javax.swing.JTextField();
         crearTablero = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         panel.setBackground(new java.awt.Color(153, 153, 153));
 
-        javax.swing.GroupLayout panelTableroLayout = new javax.swing.GroupLayout(panelTablero);
-        panelTablero.setLayout(panelTableroLayout);
-        panelTableroLayout.setHorizontalGroup(
-            panelTableroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout tableroPresenterLayout = new javax.swing.GroupLayout(tableroPresenter);
+        tableroPresenter.setLayout(tableroPresenterLayout);
+        tableroPresenterLayout.setHorizontalGroup(
+            tableroPresenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 518, Short.MAX_VALUE)
         );
-        panelTableroLayout.setVerticalGroup(
-            panelTableroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        tableroPresenterLayout.setVerticalGroup(
+            tableroPresenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 407, Short.MAX_VALUE)
         );
 
@@ -61,14 +62,14 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(panelTablero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tableroPresenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panelTablero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tableroPresenter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -77,23 +78,17 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
         jToolBar1.setBackground(new java.awt.Color(204, 204, 255));
         jToolBar1.setRollover(true);
 
-        fila.setText("Filas");
+        fila.setText("TABLERO  N X N");
         jToolBar1.add(fila);
 
-        txtFilas.setMinimumSize(new java.awt.Dimension(6, 30));
-        txtFilas.setPreferredSize(new java.awt.Dimension(30, 30));
-        txtFilas.addActionListener(new java.awt.event.ActionListener() {
+        dimension.setMinimumSize(new java.awt.Dimension(6, 30));
+        dimension.setPreferredSize(new java.awt.Dimension(30, 30));
+        dimension.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFilasActionPerformed(evt);
+                dimensionActionPerformed(evt);
             }
         });
-        jToolBar1.add(txtFilas);
-
-        columna.setText("Columnas");
-        jToolBar1.add(columna);
-
-        txtColumnas.setPreferredSize(new java.awt.Dimension(30, 30));
-        jToolBar1.add(txtColumnas);
+        jToolBar1.add(dimension);
 
         crearTablero.setBackground(new java.awt.Color(0, 59, 60));
         crearTablero.setForeground(new java.awt.Color(255, 255, 255));
@@ -114,24 +109,21 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtFilasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFilasActionPerformed
+    private void dimensionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dimensionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtFilasActionPerformed
+    }//GEN-LAST:event_dimensionActionPerformed
 
     private void crearTableroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearTableroActionPerformed
         // TODO add your handling code here:
-        String f = txtFilas.getText();
-        //Se obtiene la cantidad de columnas a crear como una cadena de caracter
-        String c = txtColumnas.getText();
-        //Se cambia de cadena de caracteres a numeros
-        int filas = Integer.parseInt(f);
-        int columnas = Integer.parseInt(c);
-
-        Tablero.DIMENSION_X = filas;
-        Tablero.DIMENSION_Y = columnas;
-
-        Tablero tablero = new Tablero();
-        panelTablero.construirTablero(tablero);
+        String n = dimension.getText();
+        int dimensionTablero = Integer.parseInt(n);
+        Tablero.DIMENSION= dimensionTablero;
+        Tablero tableroModelo = new Tablero();
+        try {
+            tableroPresenter.construirEnBaseA(tableroModelo);
+        } catch (FueraLimiteException ex) {
+            Logger.getLogger(Aplicacion8Torres.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_crearTableroActionPerformed
   
@@ -171,13 +163,11 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel columna;
     private javax.swing.JButton crearTablero;
+    private javax.swing.JTextField dimension;
     private javax.swing.JLabel fila;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JPanel panel;
-    private com.unmsm.ochotorres.interfazgrafica.TableroPresenter panelTablero;
-    private javax.swing.JTextField txtColumnas;
-    private javax.swing.JTextField txtFilas;
+    private com.unmsm.ochotorres.interfazgrafica.TableroPresenter tableroPresenter;
     // End of variables declaration//GEN-END:variables
 }

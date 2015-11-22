@@ -5,6 +5,7 @@
  */
 package com.unmsm.ochotorres.interfazgrafica;
 
+import com.unmsm.ochotorres.FueraLimiteException;
 import com.unmsm.ochotorres.Tablero;
 
 /**
@@ -16,27 +17,24 @@ public class TableroPresenter extends javax.swing.JPanel {
     /**
      * Creates new form PanelTablero
      */
+    CeldaPresenter[][] matriz;
     public TableroPresenter() {
         initComponents();
+        
     }
     
-    public void construirTablero(Tablero tablero){
+    public void construirEnBaseA(Tablero tablero) throws FueraLimiteException{
         this.removeAll();
-        int filas = Tablero.DIMENSION_X;
-        int columnas = Tablero.DIMENSION_Y;
-        CeldaPresenter[][] tableroPresenter = new CeldaPresenter[filas][columnas];
-        for (int fila = 0; fila < filas; fila++) {
-            //Estando en la fila se recorrer las columnas
-            for (int columna = 0; columna < columnas; columna++) {
-                CeldaPresenter celdaPresenter = new CeldaPresenter(50 * columna, 50 * fila, 50, 50);
-                Tablero.Celda celdaContenido = tablero.getCelda(fila + 1, columna + 1);
-                celdaPresenter.establecerContenido(celdaContenido);
+        matriz = new CeldaPresenter[Tablero.DIMENSION][Tablero.DIMENSION];
+        for (int fila = 0; fila < Tablero.DIMENSION; fila++) {
+            for (int columna = 0; columna < Tablero.DIMENSION; columna++) {
+                Posicion posicion =new Posicion(50 * columna, 50 * fila, 50, 50);
+                CeldaPresenter celdaPresenter = new CeldaPresenter(posicion,tablero.getCelda(fila + 1, columna + 1));
+                //cada celda debe relacionarse con su tablero: por hacer
                 celdaPresenter.establecerContenedor(tablero);
-                celdaPresenter.establecerPanel(this);
-                celdaPresenter.establecerIcono(celdaContenido.obtenerEstado());
-                tableroPresenter[fila][columna] = celdaPresenter;
-
-                this.add(tableroPresenter[fila][columna]);
+                celdaPresenter.establecerPanel(this);                     
+                matriz[fila][columna] = celdaPresenter;
+                this.add(matriz[fila][columna]);
             }
         }
         this.updateUI();

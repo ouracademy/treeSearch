@@ -1,5 +1,7 @@
 package com.unmsm.ochotorres;
 
+import com.unmsm.busqueda.Estado;
+import static com.unmsm.ochotorres.Tablero.Celda.Estado.LIBRE;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,8 +10,10 @@ public class Tablero implements Cloneable{
 
     public static  int DIMENSION_X = 8;
     public static  int DIMENSION_Y = 8;
+    public static  int DIMENSION= 8;
     private final Celda[][] matriz;
     public int cantidadPiezas;
+    
 
     public Tablero() {
         matriz = new Celda[DIMENSION][DIMENSION];
@@ -26,20 +30,21 @@ public class Tablero implements Cloneable{
         for (int i = 0; i < DIMENSION; i++) {
             for (int j = 0; j < DIMENSION; j++) {
                 matriz[i][j] = new Celda(i + 1, j + 1);
+              
             }
         }
     }
 
-    public Celda agregarPieza(int posicionX, int posicionY, Pieza pieza){
+    public Celda agregarPieza(int posicionX, int posicionY, Pieza pieza) throws FueraLimiteException{
         Celda celda = getCelda(posicionX, posicionY);
         if (celda.estaLibre()) {
-            celda.colocarPieza(pieza);
+            celda.colocarPieza(this,pieza);
             cantidadPiezas++;
         }
         return celda;
     }
 
-    public Celda getCelda(int posicionX, int posicionY) {
+    public Celda getCelda(int posicionX, int posicionY) throws FueraLimiteException {
         try{
             return matriz[posicionX - 1][posicionY - 1];
         }catch(ArrayIndexOutOfBoundsException ex){
@@ -51,7 +56,7 @@ public class Tablero implements Cloneable{
         return cantidadPiezas;
     }
     
-    public List<Celda> celdasLibres(){
+    public List<Celda> celdasLibres() throws FueraLimiteException{
         List<Celda> celdasLibres = new ArrayList<>();
                 
         for(int i=1;i<=Tablero.DIMENSION;i++)
@@ -78,20 +83,38 @@ public class Tablero implements Cloneable{
         public int posicionY;
         private Pieza pieza;
         private boolean ocupado;
+        private Estado estado;
+        private Tablero tablero;
+
+       
+        
+        public static   enum Estado {
+        OCUPADO,
+        RESTRINGIDO,LIBRE
+    }
 
         private Celda(int posicionX, int posicionY) {
             this.posicionX = posicionX;
             this.posicionY = posicionY;
             this.ocupado = false;
+            this.estado=LIBRE;
+       
         }
 
-        public void colocarPieza(Pieza pieza) {
+        public void colocarPieza(Tablero tablero,Pieza pieza) {
             this.pieza = pieza;
             this.ocupado = true;
+            pieza.bloquear(tablero,this);
+            this.estado=Estado.OCUPADO;    
         }
 
         public void ocupar() {
             this.ocupado = true;
+            this.estado=Estado.OCUPADO;
+        }
+        public void restringir(){
+            this.ocupado=true;
+            this.estado=Estado.RESTRINGIDO; 
         }
 
         public boolean estaLibre() {
@@ -106,10 +129,8 @@ public class Tablero implements Cloneable{
             }else{
                 cad = ocupado? "OCUPADO": "LIBRE";
             }
-                
-            
-            
-            return String.format("%s %d %s %d %s %-11s", "(", posicionX, ",", posicionY, ")=", cad);
+            //retorne el enum de estados
+            return String.format("%s %d %s %d %s %-11s", "(", posicionX, ",", posicionY, ")=", estado);
         }
         
         public Estado obtenerEstado(){

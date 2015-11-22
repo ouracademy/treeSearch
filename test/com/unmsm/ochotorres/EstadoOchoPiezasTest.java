@@ -44,19 +44,19 @@ public class EstadoOchoPiezasTest {
      * Test of esMeta method, of class EstadoOchoPiezas.
      */
     @Test
-    public void testEsMeta() {
+    public void testEsMeta() throws FueraLimiteException {
         System.out.println("esMeta");
         EstadoOchoPiezas instance = unaMeta();
         boolean result = instance.esMeta();
         assertTrue(result);
     }
 
-    private EstadoOchoPiezas unaMeta(){
+    private EstadoOchoPiezas unaMeta() throws FueraLimiteException{
         Tablero tablero = unTableroConDiagonalDeTamaño(Tablero.DIMENSION, new Torre());
         return new EstadoOchoPiezas(tablero);
     }
     
-    private Tablero unTableroConDiagonalDeTamaño(int tamaño, Pieza pieza){
+    private Tablero unTableroConDiagonalDeTamaño(int tamaño, Pieza pieza) throws FueraLimiteException{
         Tablero tablero = new Tablero();
         for(int i=1;i<=tamaño;i++){
             Tablero.Celda celda = tablero.agregarPieza(i, i, pieza);
@@ -70,7 +70,7 @@ public class EstadoOchoPiezasTest {
      * Test of generarSucesores method, of class EstadoOchoPiezas.
      */
     @Test
-    public void testGenerarSucesores() {
+    public void testGenerarSucesores() throws FueraLimiteException {
         System.out.println("generarSucesores");
         Tablero tablero = unTableroConDiagonalDeTamaño(6, new Torre());
         EstadoOchoPiezas instance = new EstadoOchoPiezas(tablero);

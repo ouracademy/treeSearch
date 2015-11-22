@@ -1,5 +1,6 @@
 package com.unmsm.ochotorres.interfazgrafica;
 
+import com.unmsm.busqueda.Estado;
 import com.unmsm.ochotorres.FueraLimiteException;
 import com.unmsm.ochotorres.Tablero;
 import com.unmsm.ochotorres.Torre;
@@ -21,20 +22,13 @@ public class CeldaPresenter extends JButton implements ActionListener {
 
     
     //-------- Constructor con parametros para posicionar a los botones ------//
-    public CeldaPresenter( int pos_x, int pos_y, int ancho, int alto ){ 
-        //Se coloca el boton en un lugar y se le da un tamanio
-        
-        setBounds(pos_x, pos_y, ancho, alto);
-               
-        //Se agrega el action listener en este caso la misma clase
+    public CeldaPresenter(Posicion posicion, Tablero.Celda contenido ){ 
+        setBounds(posicion.pos_x, posicion.pos_y, posicion.ancho, posicion.alto);
+        this.contenido=contenido;
+        this.establecerIcono();
         addActionListener( this );
     }
-    //------------------------------------------------------------------------//
-    
-    //---------------------- Se asigna una el nombre del boton ---------------//
-    public void setNombre( int f, int c ){
-        setText( f + " , " + c );
-    }
+
     
     public void setImagen(String imagePath){
         ImageIcon icono=new ImageIcon(imagePath);     
@@ -50,11 +44,16 @@ public class CeldaPresenter extends JButton implements ActionListener {
        int columna=contenido.posicionY;
        try {
             tablero.agregarPieza(fila,columna, new Torre());
+
         } catch (FueraLimiteException ex) {
             Logger.getLogger(CeldaPresenter.class.getName()).log(Level.SEVERE, null, ex);
         }
        
-       panelTablero.construirTablero(tablero);
+        try {
+            panelTablero.construirEnBaseA(tablero);
+        } catch (FueraLimiteException ex) {
+            Logger.getLogger(CeldaPresenter.class.getName()).log(Level.SEVERE, null, ex);
+        }
        
     }
     //------------------------------------------------------------------------//
@@ -65,8 +64,8 @@ public class CeldaPresenter extends JButton implements ActionListener {
     
 
   
-    public void establecerIcono(Tablero.Celda.Estado estado) {
-        switch(estado){
+    public void establecerIcono() {
+       switch(this.contenido.obtenerEstado()){
             case LIBRE: setBackground(Color.GRAY);
                 break;
             case OCUPADO :
@@ -74,11 +73,8 @@ public class CeldaPresenter extends JButton implements ActionListener {
                 break;
             case RESTRINGIDO : 
                 setBackground(Color.BLACK);
-                break;
-                
-        }
-        
-        
+                break;      
+        }   
     }
 
     void establecerContenedor(Tablero tablero) {
