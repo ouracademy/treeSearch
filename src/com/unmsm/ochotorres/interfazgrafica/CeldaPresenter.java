@@ -19,6 +19,7 @@ public class CeldaPresenter extends JButton implements ActionListener {
     private Tablero tablero;
     private TableroPresenter panelTablero;
     
+    
 
     
     //-------- Constructor con parametros para posicionar a los botones ------//

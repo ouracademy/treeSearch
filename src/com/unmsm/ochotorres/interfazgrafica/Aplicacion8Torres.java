@@ -7,8 +7,11 @@ package com.unmsm.ochotorres.interfazgrafica;
 
 import com.unmsm.ochotorres.FueraLimiteException;
 import com.unmsm.ochotorres.Tablero;
+import java.awt.Image;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 /**
  *
@@ -23,6 +26,15 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
    
     public Aplicacion8Torres() {
         initComponents();
+        setImagen(anterior,"anterior.jpg");
+        setImagen(posterior,"posterior.jpg");
+   
+    }
+    
+        public void setImagen(JButton boton ,String imagePath){
+        ImageIcon icono=new ImageIcon(imagePath);     
+        ImageIcon iconAjustado= new ImageIcon(icono.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
+        boton.setIcon(iconAjustado);   
     }
 
     /**
@@ -36,6 +48,9 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
 
         panel = new javax.swing.JPanel();
         tableroPresenter = new com.unmsm.ochotorres.interfazgrafica.TableroPresenter();
+        jPanel1 = new javax.swing.JPanel();
+        anterior = new javax.swing.JButton();
+        posterior = new javax.swing.JButton();
         jToolBar1 = new javax.swing.JToolBar();
         fila = new javax.swing.JLabel();
         dimension = new javax.swing.JTextField();
@@ -53,7 +68,28 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
         );
         tableroPresenterLayout.setVerticalGroup(
             tableroPresenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 407, Short.MAX_VALUE)
+            .addGap(0, 339, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(73, 73, 73)
+                .addComponent(anterior, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(posterior, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(114, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(posterior, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(anterior, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13))
         );
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
@@ -61,16 +97,23 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(tableroPresenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(tableroPresenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
+            .addGroup(panelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tableroPresenter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(tableroPresenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         getContentPane().add(panel, java.awt.BorderLayout.CENTER);
@@ -95,6 +138,7 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
         crearTablero.setText("Crear Tablero");
         crearTablero.setFocusable(false);
         crearTablero.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        crearTablero.setPreferredSize(new java.awt.Dimension(100, 21));
         crearTablero.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         crearTablero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,11 +207,14 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton anterior;
     private javax.swing.JButton crearTablero;
     private javax.swing.JTextField dimension;
     private javax.swing.JLabel fila;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JPanel panel;
+    private javax.swing.JButton posterior;
     private com.unmsm.ochotorres.interfazgrafica.TableroPresenter tableroPresenter;
     // End of variables declaration//GEN-END:variables
 }
