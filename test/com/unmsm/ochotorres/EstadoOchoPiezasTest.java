@@ -1,0 +1,95 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.unmsm.ochotorres;
+
+import com.unmsm.busqueda.Estado;
+import java.util.List;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+/**
+ *
+ * @author Arthur Mauricio Delgadillo
+ */
+public class EstadoOchoPiezasTest {
+    
+    public EstadoOchoPiezasTest() {
+    }
+    
+    @BeforeClass
+    public static void setUpClass() {
+    }
+    
+    @AfterClass
+    public static void tearDownClass() {
+    }
+    
+    @Before
+    public void setUp() {
+    }
+    
+    @After
+    public void tearDown() {
+    }
+
+    /**
+     * Test of esMeta method, of class EstadoOchoPiezas.
+     */
+    @Test
+    public void testEsMeta() {
+        System.out.println("esMeta");
+        EstadoOchoPiezas instance = unaMeta();
+        boolean result = instance.esMeta();
+        assertTrue(result);
+    }
+
+    private EstadoOchoPiezas unaMeta(){
+        Tablero tablero = unTableroConDiagonalDeTamaño(Tablero.DIMENSION, new Torre());
+        return new EstadoOchoPiezas(tablero);
+    }
+    
+    private Tablero unTableroConDiagonalDeTamaño(int tamaño, Pieza pieza){
+        Tablero tablero = new Tablero();
+        for(int i=1;i<=tamaño;i++){
+            Tablero.Celda celda = tablero.agregarPieza(i, i, pieza);
+            pieza.bloquear(tablero, celda);
+        }
+        System.out.println(tablero);    
+        return tablero;
+    }
+    
+    /**
+     * Test of generarSucesores method, of class EstadoOchoPiezas.
+     */
+    @Test
+    public void testGenerarSucesores() {
+        System.out.println("generarSucesores");
+        EstadoOchoPiezas instance = new EstadoOchoPiezas(unTableroConDiagonalDeTamaño(7, new Torre()));
+        List<Estado> expResult = null;
+        List<Estado> result = instance.generarSucesores();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of igual method, of class EstadoOchoPiezas.
+     */
+    @Test
+    public void testIgual() {
+        System.out.println("igual");
+        Estado estado = null;
+        EstadoOchoPiezas instance = null;
+        boolean expResult = false;
+        boolean result = instance.igual(estado);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+    
+}

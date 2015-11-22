@@ -1,95 +1,105 @@
 package com.unmsm.ochotorres;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
-public class Tablero {
+public class Tablero implements Cloneable{
 
-    public static final int DIMENSION_X = 8;
-    public static final int DIMENSION_Y = 8;
+    public static final int DIMENSION = 8;
     private final Celda[][] matriz;
     private int cantidadPiezas;
 
     public Tablero() {
-        matriz = new Celda[DIMENSION_X][DIMENSION_Y];
+        matriz = new Celda[DIMENSION][DIMENSION];
         cantidadPiezas = 0;
         crearTablero();
     }
 
+    public Tablero(Tablero tablero) {
+        this.matriz = tablero.matriz;
+        this.cantidadPiezas = tablero.cantidadPiezas;
+    }
+
     private void crearTablero() {
-        for (int i = 0; i < DIMENSION_X; i++) {
-            for (int j = 0; j < DIMENSION_Y; j++) {
+        for (int i = 0; i < DIMENSION; i++) {
+            for (int j = 0; j < DIMENSION; j++) {
                 matriz[i][j] = new Celda(i + 1, j + 1);
             }
         }
     }
 
-    public void agregarPieza(int posicionX, int posicionY, Pieza pieza) throws FueraLimiteException {
-        try{
-            intentarAgregarPieza(posicionX, posicionY, pieza);
-        }catch(ArrayIndexOutOfBoundsException ex){
-            throw new FueraLimiteException(ex);
-        }
-
-    }
-    
-    private void intentarAgregarPieza(int posicionX, int posicionY, Pieza pieza){
+    public Celda agregarPieza(int posicionX, int posicionY, Pieza pieza){
         Celda celda = getCelda(posicionX, posicionY);
         if (celda.estaLibre()) {
-            pieza.bloquear(this, celda);
             celda.colocarPieza(pieza);
             cantidadPiezas++;
         }
+        return celda;
     }
 
     public Celda getCelda(int posicionX, int posicionY) {
-        return matriz[posicionX - 1][posicionY - 1];
+        try{
+            return matriz[posicionX - 1][posicionY - 1];
+        }catch(ArrayIndexOutOfBoundsException ex){
+            throw new FueraLimiteException(ex);
+        }
+    }
+    
+    public int getCantidadPiezas(){
+        return cantidadPiezas;
+    }
+    
+    public List<Celda> celdasLibres(){
+        List<Celda> celdasLibres = new ArrayList<>();
+                
+        for(int i=1;i<=Tablero.DIMENSION;i++)
+            for(int j=1;j<=Tablero.DIMENSION;j++){
+                Celda celda = getCelda(i, j);
+                if(celda.estaLibre())
+                    celdasLibres.add(celda);
+            }
+        return celdasLibres;
     }
 
     @Override
     public String toString() {
         String cadenaMatriz = "";
-        for (int i = 0; i < DIMENSION_X; i++) {
+        for (int i = 0; i < DIMENSION; i++) {
             cadenaMatriz += Arrays.toString(matriz[i]) + '\n';
         }
         return cadenaMatriz;
     }
-
+    
     public static class Celda {
 
         public int posicionX;
         public int posicionY;
         private Pieza pieza;
-        private Estado estado;
-
-        public enum Estado {
-            OCUPADO,
-            RESTRINGIDO,
-            LIBRE
-        }
+        private boolean ocupado;
 
         private Celda(int posicionX, int posicionY) {
             this.posicionX = posicionX;
             this.posicionY = posicionY;
-            this.estado = Estado.LIBRE;
+            this.ocupado = false;
         }
 
         public void colocarPieza(Pieza pieza) {
             this.pieza = pieza;
-            this.estado = Estado.OCUPADO;
+            this.ocupado = true;
         }
 
-        public void restringir() {
-            this.estado = Estado.RESTRINGIDO;
+        public void ocupar() {
+            this.ocupado = true;
         }
 
         public boolean estaLibre() {
-            return estado == Estado.LIBRE;
+            return !ocupado;
         }
 
         @Override
         public String toString() {
-            return String.format("%s %d %s %d %s %11s", "(", posicionX, ",", posicionY, ")=", estado);
-
+            return String.format("%s %d %s %d %s %-11s", "(", posicionX, ",", posicionY, ")=", ocupado? "OCUPADO": "LIBRE");
         }
     }
 

@@ -11,14 +11,14 @@ class Torre implements Pieza {
     }
 
     private void bloquearFila(Tablero tablero,int fila) {
-        for (int j = 1; j <= Tablero.DIMENSION_Y; j++) {
-            tablero.getCelda(fila, j).restringir();
+        for (int j = 1; j <= Tablero.DIMENSION; j++) {
+            tablero.getCelda(fila, j).ocupar();
         }
     }
 
     private void bloquearColumna(Tablero tablero,int columna) {
-        for (int i = 1; i <= Tablero.DIMENSION_X; i++) {
-            tablero.getCelda(i, columna).restringir();
+        for (int i = 1; i <= Tablero.DIMENSION; i++) {
+            tablero.getCelda(i, columna).ocupar();
         }
     }
 

@@ -9,7 +9,7 @@ package com.unmsm.ochotorres;
  *
  * @author pc
  */
-class FueraLimiteException extends Exception{
+class FueraLimiteException extends RuntimeException{
 
     public FueraLimiteException(Throwable cause) {
         super(cause);
