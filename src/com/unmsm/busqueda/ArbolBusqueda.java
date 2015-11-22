@@ -2,7 +2,9 @@ package com.unmsm.busqueda;
 
 import com.unmsm.busqueda.evaluacion.CostoEntreEstados;
 import com.unmsm.busqueda.evaluacion.CostoPorDefecto;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * Clase que busca segun una estrategia de busqueda
@@ -17,6 +19,7 @@ public class ArbolBusqueda implements Busqueda {
     private int conteoBusqueda;
     private CostoEntreEstados calculaCosto;
     private EstrategiaBusqueda estrategiaBusqueda;
+    private Queue<NodoDeBusqueda> colaDecolados;    
     
     public ArbolBusqueda(EstrategiaBusqueda estrategiaBusqueda){
         this.estrategiaBusqueda = estrategiaBusqueda;
@@ -30,13 +33,18 @@ public class ArbolBusqueda implements Busqueda {
         this.calculaCosto = calculaCosto;
         return this;
     }
-        
+    
+    public Queue<NodoDeBusqueda> obtenerColaDecolados(){
+        return colaDecolados;
+    }
+    
     @Override
     public Camino buscar(Estado estadoInicial) {
         inicializar(estadoInicial);
 
         while (estrategiaBusqueda.existeCandidato()) {
             NodoDeBusqueda candidato = estrategiaBusqueda.escogerCandidato();
+            colaDecolados.add(candidato);
 
             if (!esMeta(candidato)) {
                 expandirArbol(candidato);
@@ -56,6 +64,7 @@ public class ArbolBusqueda implements Busqueda {
     
     private void inicializar(Estado estadoInicial) {
         conteoBusqueda = 1;
+        colaDecolados = new LinkedList();
         estrategiaBusqueda.inicializar();
         estrategiaBusqueda.agregarCandidato(obtenerRaiz(estadoInicial));
         inicializarCostoEntreEstados();

@@ -12,10 +12,11 @@ public class PruebaPanquequeconAEstrella {
     public static void main(String[] args) {
         Integer[] a = { 4,2,3,1};
         EstrategiaBusqueda estrategiaBusqueda = new BusquedaAEstrella(new HeuristicaPanquequesDebajoMayor());
-        Busqueda busqueda = new ArbolBusqueda(estrategiaBusqueda)
+        ArbolBusqueda busqueda = new ArbolBusqueda(estrategiaBusqueda)
                 .conCostoEntreEstados(new CostoCantidadPanquequesAGirar());
         Camino caminoSolucion = busqueda.buscar(new EstadoPanqueques(a));
 
+        Consola.mostrar(busqueda.obtenerColaDecolados());
         Consola.mostrar(caminoSolucion);
         System.out.println("Número de nodos examinados: "
                     + busqueda.getConteoBusqueda());

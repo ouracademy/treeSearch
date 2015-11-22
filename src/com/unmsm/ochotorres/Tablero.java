@@ -17,7 +17,7 @@ public class Tablero implements Cloneable{
     }
 
     public Tablero(Tablero tablero) {
-        this.matriz = tablero.matriz;
+        this.matriz = Arrays.copyOf(tablero.matriz, DIMENSION);
         this.cantidadPiezas = tablero.cantidadPiezas;
     }
 
@@ -61,7 +61,7 @@ public class Tablero implements Cloneable{
             }
         return celdasLibres;
     }
-
+    
     @Override
     public String toString() {
         String cadenaMatriz = "";
@@ -99,7 +99,16 @@ public class Tablero implements Cloneable{
 
         @Override
         public String toString() {
-            return String.format("%s %d %s %d %s %-11s", "(", posicionX, ",", posicionY, ")=", ocupado? "OCUPADO": "LIBRE");
+            String cad;
+            if(pieza!=null){
+                cad = pieza.toString();
+            }else{
+                cad = ocupado? "OCUPADO": "LIBRE";
+            }
+                
+            
+            
+            return String.format("%s %d %s %d %s %-11s", "(", posicionX, ",", posicionY, ")=", cad);
         }
     }
 

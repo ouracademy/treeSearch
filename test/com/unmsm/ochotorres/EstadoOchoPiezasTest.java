@@ -6,6 +6,7 @@
 package com.unmsm.ochotorres;
 
 import com.unmsm.busqueda.Estado;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -71,9 +72,18 @@ public class EstadoOchoPiezasTest {
     @Test
     public void testGenerarSucesores() {
         System.out.println("generarSucesores");
-        EstadoOchoPiezas instance = new EstadoOchoPiezas(unTableroConDiagonalDeTamaño(7, new Torre()));
-        List<Estado> expResult = null;
+        Tablero tablero = unTableroConDiagonalDeTamaño(6, new Torre());
+        EstadoOchoPiezas instance = new EstadoOchoPiezas(tablero);
+        List<Estado> expResult = new ArrayList<>();
+//
+//        expResult.add(new EstadoOchoPiezas(new Tablero(tablero)));
+//        expResult.add(instance);
+//        expResult.add(instance);
+//        expResult.add(instance);
+        
+        
         List<Estado> result = instance.generarSucesores();
+        System.out.println(result);
         assertEquals(expResult, result);
     }
 

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EstadoOchoPiezas implements Estado {
-
     private Tablero tablero;
 
     public EstadoOchoPiezas(Tablero tablero) {
@@ -24,8 +23,12 @@ public class EstadoOchoPiezas implements Estado {
         //TODO aun no se ha probado...ver EstadoOchoPiezasTest.testGenerarSucesores
         //Se debe hacer una prueba
         for(Tablero.Celda celda: tablero.celdasLibres()){
+            System.out.println(celda);
             Tablero tableroCopy = new Tablero(tablero);
-            tableroCopy.agregarPieza(celda.posicionX, celda.posicionY, new Torre());
+            Pieza pieza = new Torre();
+            tableroCopy.agregarPieza(celda.posicionX, celda.posicionY, pieza);
+            pieza.bloquear(tableroCopy, celda);
+            System.out.println(tableroCopy);
             sucesores.add(new EstadoOchoPiezas(tableroCopy));
         }
         
@@ -36,5 +39,12 @@ public class EstadoOchoPiezas implements Estado {
     public boolean igual(Estado estado) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public String toString() {
+        return tablero.toString();
+    }
+    
+    
 
 }

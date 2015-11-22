@@ -10,9 +10,10 @@ public class PruebaPanquequeconBFS {
 
     public static void main(String[] args) {
         Integer[] a = { 4,1,3,2};
-        Busqueda busqueda = new ArbolBusqueda(new BusquedaBFS());
+        ArbolBusqueda busqueda = new ArbolBusqueda(new BusquedaBFS());
         Camino caminoSolucion = busqueda.buscar(new EstadoPanqueques(a));
 
+        Consola.mostrar(busqueda.obtenerColaDecolados());
         Consola.mostrar(caminoSolucion);
         System.out.println("Número de nodos examinados: "
                     + busqueda.getConteoBusqueda());

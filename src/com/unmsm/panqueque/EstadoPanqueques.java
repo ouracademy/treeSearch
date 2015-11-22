@@ -12,8 +12,8 @@ import java.util.List;
  */
 public class EstadoPanqueques implements Estado {
 
-	private static final Integer[] META_DEFECTO = new Integer[]{1, 2, 3, 4};
-	private Integer[] meta;
+    private static final Integer[] META_DEFECTO = new Integer[]{1, 2, 3, 4};
+    private Integer[] meta;
     private Integer[] estadoActual;
     
     public EstadoPanqueques() {
