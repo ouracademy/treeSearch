@@ -72,7 +72,7 @@ public class EstadoOchoPiezasTest {
     @Test
     public void testGenerarSucesores() throws FueraLimiteException {
         System.out.println("generarSucesores");
-        Tablero tablero = unTableroConDiagonalDeTamaño(6, new Torre());
+        Tablero tablero = unTableroConDiagonalDeTamaño(4, new Torre());
         EstadoOchoPiezas instance = new EstadoOchoPiezas(tablero);
         List<Estado> expResult = new ArrayList<>();
 //

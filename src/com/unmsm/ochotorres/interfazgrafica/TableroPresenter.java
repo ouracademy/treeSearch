@@ -5,7 +5,6 @@
  */
 package com.unmsm.ochotorres.interfazgrafica;
 
-import com.unmsm.ochotorres.FueraLimiteException;
 import com.unmsm.ochotorres.Tablero;
 
 /**
@@ -23,7 +22,7 @@ public class TableroPresenter extends javax.swing.JPanel {
         
     }
     
-    public void construirEnBaseA(Tablero tablero) throws FueraLimiteException{
+    public void construirEnBaseA(Tablero tablero){
         this.removeAll();
         matriz = new CeldaPresenter[Tablero.DIMENSION][Tablero.DIMENSION];
         for (int fila = 0; fila < Tablero.DIMENSION; fila++) {

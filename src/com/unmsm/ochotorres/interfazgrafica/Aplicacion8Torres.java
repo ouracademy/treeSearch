@@ -5,11 +5,8 @@
  */
 package com.unmsm.ochotorres.interfazgrafica;
 
-import com.unmsm.ochotorres.FueraLimiteException;
 import com.unmsm.ochotorres.Tablero;
 import java.awt.Image;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -160,14 +157,9 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
         // TODO add your handling code here:
         String n = dimension.getText();
         int dimensionTablero = Integer.parseInt(n);
-        Tablero.DIMENSION= dimensionTablero;
+        Tablero.DIMENSION = dimensionTablero;
         Tablero tableroModelo = new Tablero();
-        try {
-            tableroPresenter.construirEnBaseA(tableroModelo);
-        } catch (FueraLimiteException ex) {
-            Logger.getLogger(Aplicacion8Torres.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        tableroPresenter.construirEnBaseA(tableroModelo);
     }//GEN-LAST:event_crearTableroActionPerformed
   
     /**

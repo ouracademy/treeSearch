@@ -18,7 +18,7 @@ public class TableroTest {
      * Test of agregarPieza method, of class Tablero.
      */
     @Test
-    public void testAgregarPieza() throws FueraLimiteException {
+    public void testAgregarPieza(){
         System.out.println("agregarPieza");
         int posicionX = 1;
         int posicionY = 2;
@@ -32,7 +32,7 @@ public class TableroTest {
      * Test of getCelda method, of class Tablero.
      */
     @Test
-    public void testGetCelda() throws FueraLimiteException {
+    public void testGetCelda(){
         System.out.println("getCelda");
         int posicionX = 1;
         int posicionY = 2;
@@ -45,7 +45,7 @@ public class TableroTest {
      * Test of getCelda method, of class Tablero.
      */
     @Test(expected = FueraLimiteException.class)
-    public void testGetCeldaFueraRango() throws FueraLimiteException {
+    public void testGetCeldaFueraRango(){
         System.out.println("getCeldaFueraRango");
          int posicionX = -1;
         int posicionY = 100;
