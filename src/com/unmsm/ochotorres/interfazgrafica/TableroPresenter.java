@@ -28,11 +28,13 @@ public class TableroPresenter extends javax.swing.JPanel {
         matriz = new CeldaPresenter[Tablero.DIMENSION][Tablero.DIMENSION];
         for (int fila = 0; fila < Tablero.DIMENSION; fila++) {
             for (int columna = 0; columna < Tablero.DIMENSION; columna++) {
+                
                 Posicion posicion =new Posicion(50 * columna, 50 * fila, 50, 50);
                 CeldaPresenter celdaPresenter = new CeldaPresenter(posicion,tablero.getCelda(fila + 1, columna + 1));
                 //cada celda debe relacionarse con su tablero: por hacer
                 celdaPresenter.establecerContenedor(tablero);
-                celdaPresenter.establecerPanel(this);                     
+                celdaPresenter.establecerPanel(this);   
+               
                 matriz[fila][columna] = celdaPresenter;
                 this.add(matriz[fila][columna]);
             }
@@ -58,11 +60,11 @@ public class TableroPresenter extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 463, Short.MAX_VALUE)
+            .addGap(0, 472, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 367, Short.MAX_VALUE)
+            .addGap(0, 397, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
