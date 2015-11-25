@@ -6,10 +6,12 @@ import java.util.List;
 
 public class EstadoOchoPiezas implements Estado {
 
+    private Pieza pieza;
     private Tablero tablero;
 
     public EstadoOchoPiezas(Tablero tablero) {
         this.tablero = tablero;
+        this.pieza = new Torre();
     }
 
     @Override
@@ -25,9 +27,7 @@ public class EstadoOchoPiezas implements Estado {
         //Se debe hacer una prueba
         for (Tablero.Celda celda : tablero.celdasLibres()) {
             Tablero tableroCopy = new Tablero(tablero);
-            Pieza pieza = new Torre();
             tableroCopy.agregarPieza(celda.posicionX, celda.posicionY, pieza);
-            pieza.bloquear(tableroCopy, celda);
             System.out.println(celda);
             System.out.println(tableroCopy);
             sucesores.add(new EstadoOchoPiezas(tableroCopy));

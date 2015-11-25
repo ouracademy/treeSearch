@@ -15,9 +15,7 @@ public class CeldaPresenter extends JButton implements ActionListener {
     private Tablero tablero;
     private TableroPresenter panelTablero;
 
-    //-------- Constructor con parametros para posicionar a los botones ------//
     public CeldaPresenter(Posicion posicion, Tablero.Celda contenido) {
-
         setBounds(posicion.pos_x, posicion.pos_y, posicion.ancho, posicion.alto);
         this.contenido = contenido;
         this.establecerIcono();
@@ -58,7 +56,7 @@ public class CeldaPresenter extends JButton implements ActionListener {
             case OCUPADO:
                 setImagen("torre.png");
                 break;
-            case RESTRINGIDO:
+            case BLOQUEADO:
                 setBackground(Color.BLACK);
                 break;
         }

@@ -6,8 +6,6 @@ import java.util.List;
 
 public class Tablero implements Cloneable {
 
-    public static int DIMENSION_X = 8;
-    public static int DIMENSION_Y = 8;
     public static int DIMENSION = 8;
     private final Celda[][] matriz;
     public int cantidadPiezas;
@@ -27,12 +25,11 @@ public class Tablero implements Cloneable {
         for (int i = 0; i < DIMENSION; i++) {
             for (int j = 0; j < DIMENSION; j++) {
                 matriz[i][j] = new Celda(i + 1, j + 1);
-
             }
         }
     }
 
-    public Celda agregarPieza(int posicionX, int posicionY, Pieza pieza){
+    public Celda agregarPieza(int posicionX, int posicionY, Pieza pieza) {
         Celda celda = getCelda(posicionX, posicionY);
         if (celda.estaLibre()) {
             celda.colocarPieza(this, pieza);
@@ -53,7 +50,7 @@ public class Tablero implements Cloneable {
         return cantidadPiezas;
     }
 
-    public List<Celda> celdasLibres(){
+    public List<Celda> celdasLibres() {
         List<Celda> celdasLibres = new ArrayList<>();
 
         for (int i = 1; i <= Tablero.DIMENSION; i++) {
@@ -81,39 +78,34 @@ public class Tablero implements Cloneable {
         public int posicionX;
         public int posicionY;
         private Pieza pieza;
-        private boolean ocupado;
         private Estado estado;
         private Tablero tablero;
 
         public static enum Estado {
+
             OCUPADO,
-            RESTRINGIDO,
+            BLOQUEADO,
             LIBRE
         }
 
         private Celda(int posicionX, int posicionY) {
             this.posicionX = posicionX;
             this.posicionY = posicionY;
-            this.ocupado = false;
             this.estado = Estado.LIBRE;
-
         }
 
         public void colocarPieza(Tablero tablero, Pieza pieza) {
             this.pieza = pieza;
-            this.ocupado = true;
             pieza.bloquear(tablero, this);
             this.estado = Estado.OCUPADO;
         }
 
         public void ocupar() {
-            this.ocupado = true;
             this.estado = Estado.OCUPADO;
         }
 
         public void restringir() {
-            this.ocupado = true;
-            this.estado = Estado.RESTRINGIDO;
+            this.estado = Estado.BLOQUEADO;
         }
 
         public boolean estaLibre() {
@@ -122,13 +114,6 @@ public class Tablero implements Cloneable {
 
         @Override
         public String toString() {
-            String cad;
-            if (pieza != null) {
-                cad = pieza.toString();
-            } else {
-                cad = ocupado ? "OCUPADO" : "LIBRE";
-            }
-            //retorne el enum de estados
             return String.format("%s %d %s %d %s %-11s", "(", posicionX, ",", posicionY, ")=", estado);
         }
 
