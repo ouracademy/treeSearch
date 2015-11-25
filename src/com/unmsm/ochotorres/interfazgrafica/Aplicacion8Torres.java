@@ -19,19 +19,17 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
     /**
      * Creates new form Aplicacion8Torres
      */
-    
-   
     public Aplicacion8Torres() {
         initComponents();
-        setImagen(anterior,"anterior.jpg");
-        setImagen(posterior,"posterior.jpg");
-   
+        setImagen(anterior, "anterior.jpg");
+        setImagen(posterior, "posterior.jpg");
+
     }
-    
-        public void setImagen(JButton boton ,String imagePath){
-        ImageIcon icono=new ImageIcon(imagePath);     
-        ImageIcon iconAjustado= new ImageIcon(icono.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
-        boton.setIcon(iconAjustado);   
+
+    public void setImagen(JButton boton, String imagePath) {
+        ImageIcon icono = new ImageIcon(imagePath);
+        ImageIcon iconAjustado = new ImageIcon(icono.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
+        boton.setIcon(iconAjustado);
     }
 
     /**
@@ -154,14 +152,13 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
     }//GEN-LAST:event_dimensionActionPerformed
 
     private void crearTableroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearTableroActionPerformed
-        // TODO add your handling code here:
         String n = dimension.getText();
         int dimensionTablero = Integer.parseInt(n);
         Tablero.DIMENSION = dimensionTablero;
         Tablero tableroModelo = new Tablero();
         tableroPresenter.construirEnBaseA(tableroModelo);
     }//GEN-LAST:event_crearTableroActionPerformed
-  
+
     /**
      * @param args the command line arguments
      */

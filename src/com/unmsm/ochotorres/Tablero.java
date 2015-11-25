@@ -24,7 +24,7 @@ public class Tablero implements Cloneable {
     private void crearTablero() {
         for (int i = 0; i < DIMENSION; i++) {
             for (int j = 0; j < DIMENSION; j++) {
-                matriz[i][j] = new Celda(i + 1, j + 1);
+                matriz[i][j] = new Celda(i + 1, j + 1, this);
             }
         }
     }
@@ -32,7 +32,7 @@ public class Tablero implements Cloneable {
     public Celda agregarPieza(int posicionX, int posicionY, Pieza pieza) {
         Celda celda = getCelda(posicionX, posicionY);
         if (celda.estaLibre()) {
-            celda.colocarPieza(this, pieza);
+            celda.colocarPieza(pieza);
             cantidadPiezas++;
         }
         return celda;
@@ -82,19 +82,19 @@ public class Tablero implements Cloneable {
         private Tablero tablero;
 
         public static enum Estado {
-
             OCUPADO,
             BLOQUEADO,
             LIBRE
         }
 
-        private Celda(int posicionX, int posicionY) {
+        private Celda(int posicionX, int posicionY, Tablero tablero) {
             this.posicionX = posicionX;
             this.posicionY = posicionY;
+            this.tablero = tablero;
             this.estado = Estado.LIBRE;
         }
 
-        public void colocarPieza(Tablero tablero, Pieza pieza) {
+        public void colocarPieza(Pieza pieza) {
             this.pieza = pieza;
             pieza.bloquear(tablero, this);
             this.estado = Estado.OCUPADO;
@@ -119,6 +119,9 @@ public class Tablero implements Cloneable {
 
         public Estado obtenerEstado() {
             return estado;
+        }
+        public Tablero obtenerTablero(){
+            return tablero;
         }
     }
 

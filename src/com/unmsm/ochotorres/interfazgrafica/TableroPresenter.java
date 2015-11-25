@@ -13,13 +13,10 @@ import com.unmsm.ochotorres.Tablero;
  */
 public class TableroPresenter extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelTablero
-     */
     CeldaPresenter[][] matriz;
+
     public TableroPresenter() {
         initComponents();
-        
     }
     
     public void construirEnBaseA(Tablero tablero){
@@ -30,10 +27,7 @@ public class TableroPresenter extends javax.swing.JPanel {
                 
                 Posicion posicion =new Posicion(50 * columna, 50 * fila, 50, 50);
                 CeldaPresenter celdaPresenter = new CeldaPresenter(posicion,tablero.getCelda(fila + 1, columna + 1));
-                //cada celda debe relacionarse con su tablero: por hacer
-                celdaPresenter.establecerContenedor(tablero);
-                celdaPresenter.establecerPanel(this);   
-               
+                celdaPresenter.establecerPanel(this);        
                 matriz[fila][columna] = celdaPresenter;
                 this.add(matriz[fila][columna]);
             }

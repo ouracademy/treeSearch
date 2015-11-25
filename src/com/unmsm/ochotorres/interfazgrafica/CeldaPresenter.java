@@ -12,11 +12,10 @@ import javax.swing.JButton;
 public class CeldaPresenter extends JButton implements ActionListener {
 
     private Tablero.Celda contenido;
-    private Tablero tablero;
     private TableroPresenter panelTablero;
 
     public CeldaPresenter(Posicion posicion, Tablero.Celda contenido) {
-        setBounds(posicion.pos_x, posicion.pos_y, posicion.ancho, posicion.alto);
+        setBounds(posicion.x, posicion.y, posicion.ancho, posicion.alto);
         this.contenido = contenido;
         this.establecerIcono();
         addActionListener(this);
@@ -27,15 +26,13 @@ public class CeldaPresenter extends JButton implements ActionListener {
         ImageIcon iconAjustado = new ImageIcon(icono.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
         this.setIcon(iconAjustado);
     }
-    //------------------------------------------------------------------------//
 
-    //------------------ Al darle click realizara este metodo ----------------//
     @Override
     public void actionPerformed(ActionEvent e) {
         int fila = contenido.posicionX;
         int columna = contenido.posicionY;
-        tablero.agregarPieza(fila, columna, new Torre());
-        panelTablero.construirEnBaseA(tablero);
+        contenido.obtenerTablero().agregarPieza(fila, columna, new Torre());
+        panelTablero.construirEnBaseA(contenido.obtenerTablero());
     }
     //------------------------------------------------------------------------//
 
@@ -60,10 +57,6 @@ public class CeldaPresenter extends JButton implements ActionListener {
                 setBackground(Color.BLACK);
                 break;
         }
-    }
-
-    void establecerContenedor(Tablero tablero) {
-        this.tablero = tablero;
     }
 
     void establecerPanel(TableroPresenter panel) {
