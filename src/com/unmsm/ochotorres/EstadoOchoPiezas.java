@@ -16,7 +16,7 @@ public class EstadoOchoPiezas implements Estado {
 
     @Override
     public boolean esMeta() {
-        return tablero.getCantidadPiezas() == 8 && tablero.celdasLibres().isEmpty();
+        return tablero.getCantidadPiezas() == Tablero.DIMENSION && tablero.celdasLibres().isEmpty();
     }
 
     @Override
@@ -25,11 +25,14 @@ public class EstadoOchoPiezas implements Estado {
 
         //TODO aun no se ha probado...ver EstadoOchoPiezasTest.testGenerarSucesores
         //Se debe hacer una prueba
+        //se puede agregar
+        
+         
         for (Tablero.Celda celda : tablero.celdasLibres()) {
-            Tablero tableroCopy = new Tablero(tablero);
+            
+            
+            Tablero tableroCopy = tablero.duplicar();
             tableroCopy.agregarPieza(celda.posicionX, celda.posicionY, pieza);
-            System.out.println(celda);
-            System.out.println(tableroCopy);
             sucesores.add(new EstadoOchoPiezas(tableroCopy));
         }
 

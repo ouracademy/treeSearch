@@ -1,10 +1,11 @@
 package com.unmsm.ochotorres;
 
 import com.unmsm.ochotorres.Tablero.Celda;
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Torre implements Pieza {
+public class Torre implements Pieza,Serializable {
 
     @Override
     public void bloquear(Tablero tablero, Celda celda) {

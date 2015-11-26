@@ -1,10 +1,12 @@
 package com.unmsm.ochotorres;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.apache.commons.lang3.SerializationUtils;
 
-public class Tablero implements Cloneable {
+public class Tablero implements Serializable {
 
     public static int DIMENSION = 8;
     private final Celda[][] matriz;
@@ -21,6 +23,11 @@ public class Tablero implements Cloneable {
         this.cantidadPiezas = tablero.cantidadPiezas;
     }
 
+    public Tablero(Celda[][] matriz, int cantidadPiezas) {
+        this.matriz = matriz;
+        this.cantidadPiezas = cantidadPiezas;
+    }
+
     private void crearTablero() {
         for (int i = 0; i < DIMENSION; i++) {
             for (int j = 0; j < DIMENSION; j++) {
@@ -34,8 +41,10 @@ public class Tablero implements Cloneable {
         if (celda.estaLibre()) {
             celda.colocarPieza(pieza);
             cantidadPiezas++;
+            return celda;
         }
-        return celda;
+        return null;
+
     }
 
     public Celda getCelda(int posicionX, int posicionY) {
@@ -48,6 +57,10 @@ public class Tablero implements Cloneable {
 
     public int getCantidadPiezas() {
         return cantidadPiezas;
+    }
+
+    public Celda[][] getMatriz() {
+        return matriz;
     }
 
     public List<Celda> celdasLibres() {
@@ -73,7 +86,17 @@ public class Tablero implements Cloneable {
         return cadenaMatriz;
     }
 
-    public static class Celda {
+    public Tablero duplicar() {
+        Tablero tableroDuplicado = null;
+        try {
+            tableroDuplicado = (Tablero)SerializationUtils.clone(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tableroDuplicado;
+    }
+
+    public static class Celda implements Serializable {
 
         public int posicionX;
         public int posicionY;
@@ -82,6 +105,7 @@ public class Tablero implements Cloneable {
         private Tablero tablero;
 
         public static enum Estado {
+
             OCUPADO,
             BLOQUEADO,
             LIBRE
@@ -120,9 +144,11 @@ public class Tablero implements Cloneable {
         public Estado obtenerEstado() {
             return estado;
         }
-        public Tablero obtenerTablero(){
+
+        public Tablero obtenerTablero() {
             return tablero;
         }
+
     }
 
 }

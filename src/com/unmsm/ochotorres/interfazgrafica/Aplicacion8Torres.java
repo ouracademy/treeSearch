@@ -6,11 +6,8 @@
 package com.unmsm.ochotorres.interfazgrafica;
 
 import com.unmsm.ochotorres.Tablero;
-import java.awt.Image;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
-
 /**
  *
  * @author pc
@@ -22,28 +19,29 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
      */
     public Aplicacion8Torres() {
         initComponents();
-        setImagen(anterior,"anterior.jpg");
-        setImagen(posterior,"posterior.jpg");
+        ButtonUtil.ponerIcono(anterior, "/com/unmsm/ochotorres/interfazgrafica/imagenes/anterior.jpg");
+        ButtonUtil.ponerIcono(posterior, "/com/unmsm/ochotorres/interfazgrafica/imagenes/posterior.jpg");
         tableroLimpio();
-                
-        
     }
 
-    public void setImagen(JButton boton, String imagePath) {
-        ImageIcon icono = new ImageIcon(imagePath);
-        ImageIcon iconAjustado = new ImageIcon(icono.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
-        boton.setIcon(iconAjustado);
+    public void tableroLimpio() {
+        a.setVisible(false);
+        b.setVisible(false);
+        c.setVisible(false);
+        d.setVisible(false);
+        e.setVisible(false);
+        f.setVisible(false);
+        g.setVisible(false);
+        h.setVisible(false);
+        ocho.setVisible(false);
+        siete.setVisible(false);
+        seis.setVisible(false);
+        cinco.setVisible(false);
+        cuatro.setVisible(false);
+        tres.setVisible(false);
+        dos.setVisible(false);
+        uno.setVisible(false);
     }
-        
-        public void tableroLimpio()
-        {
-            a.setVisible(false); b.setVisible(false); c.setVisible(false);
-            d.setVisible(false); e.setVisible(false); f.setVisible(false);
-            g.setVisible(false); h.setVisible(false); 
-            ocho.setVisible(false); siete.setVisible(false); seis.setVisible(false);
-            cinco.setVisible(false); cuatro.setVisible(false); tres.setVisible(false);
-            dos.setVisible(false); uno.setVisible(false);
-        }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -236,13 +234,11 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
         jToolBar1.setBackground(new java.awt.Color(204, 204, 255));
         jToolBar1.setRollover(true);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/unmsm/imagenes/torreani.png"))); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(40, 40));
         jToolBar1.add(jLabel1);
 
         fila.setFont(new java.awt.Font("Arial Narrow", 1, 13)); // NOI18N
         fila.setText("DIMENSION DEL TABLERO :");
-        fila.setPreferredSize(new java.awt.Dimension(150, 16));
         jToolBar1.add(fila);
 
         dimension.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -264,7 +260,6 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
         crearTablero.setBackground(new java.awt.Color(204, 204, 255));
         crearTablero.setFont(new java.awt.Font("Arial Narrow", 1, 12)); // NOI18N
         crearTablero.setForeground(new java.awt.Color(51, 51, 51));
-        crearTablero.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/unmsm/imagenes/execute.png"))); // NOI18N
         crearTablero.setText("CREAR TABLERO");
         crearTablero.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         crearTablero.setFocusable(false);
@@ -278,7 +273,6 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
         jToolBar1.add(crearTablero);
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/unmsm/imagenes/torreani.png"))); // NOI18N
         jLabel2.setPreferredSize(new java.awt.Dimension(60, 40));
         jToolBar1.add(jLabel2);
 
@@ -297,76 +291,166 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(rootPane, "INGRESAR DIMENSION CORRECTA!!");
         }
-       
-        if(dimensionTablero>0&&dimensionTablero<9)
-        {
+
+        if (dimensionTablero > 0 && dimensionTablero < 9) {
             Tablero.DIMENSION = dimensionTablero;
             Tablero tableroModelo = new Tablero();
-            try {
-                tableroPresenter.construirEnBaseA(tableroModelo);
-            } catch (FueraLimiteException ex) {
-                Logger.getLogger(Aplicacion8Torres.class.getName()).log(Level.SEVERE, null, ex);
+            tableroPresenter.construirEnBaseA(tableroModelo);
+
+            switch (dimensionTablero) {
+                case 1:
+                    a.setVisible(true);
+                    b.setVisible(false);
+                    c.setVisible(false);
+                    d.setVisible(false);
+                    e.setVisible(false);
+                    f.setVisible(false);
+                    g.setVisible(false);
+                    h.setVisible(false);
+                    ocho.setVisible(false);
+                    siete.setVisible(false);
+                    seis.setVisible(false);
+                    cinco.setVisible(false);
+                    cuatro.setVisible(false);
+                    tres.setVisible(false);
+                    dos.setVisible(false);
+                    uno.setVisible(true);
+                    break;
+
+                case 2:
+                    a.setVisible(true);
+                    b.setVisible(true);
+                    c.setVisible(false);
+                    d.setVisible(false);
+                    e.setVisible(false);
+                    f.setVisible(false);
+                    g.setVisible(false);
+                    h.setVisible(false);
+                    ocho.setVisible(false);
+                    siete.setVisible(false);
+                    seis.setVisible(false);
+                    cinco.setVisible(false);
+                    cuatro.setVisible(false);
+                    tres.setVisible(false);
+                    dos.setVisible(true);
+                    uno.setVisible(true);
+                    break;
+
+                case 3:
+                    a.setVisible(true);
+                    b.setVisible(true);
+                    c.setVisible(true);
+                    d.setVisible(false);
+                    e.setVisible(false);
+                    f.setVisible(false);
+                    g.setVisible(false);
+                    h.setVisible(false);
+                    ocho.setVisible(false);
+                    siete.setVisible(false);
+                    seis.setVisible(false);
+                    cinco.setVisible(false);
+                    cuatro.setVisible(false);
+                    tres.setVisible(true);
+                    dos.setVisible(true);
+                    uno.setVisible(true);
+                    break;
+
+                case 4:
+                    a.setVisible(true);
+                    b.setVisible(true);
+                    c.setVisible(true);
+                    d.setVisible(true);
+                    e.setVisible(false);
+                    f.setVisible(false);
+                    g.setVisible(false);
+                    h.setVisible(false);
+                    ocho.setVisible(false);
+                    siete.setVisible(false);
+                    seis.setVisible(false);
+                    cinco.setVisible(false);
+                    cuatro.setVisible(true);
+                    tres.setVisible(true);
+                    dos.setVisible(true);
+                    uno.setVisible(true);
+                    break;
+
+                case 5:
+                    a.setVisible(true);
+                    b.setVisible(true);
+                    c.setVisible(true);
+                    d.setVisible(true);
+                    e.setVisible(true);
+                    f.setVisible(false);
+                    g.setVisible(false);
+                    h.setVisible(false);
+                    ocho.setVisible(false);
+                    siete.setVisible(false);
+                    seis.setVisible(false);
+                    cinco.setVisible(true);
+                    cuatro.setVisible(true);
+                    tres.setVisible(true);
+                    dos.setVisible(true);
+                    uno.setVisible(true);
+                    break;
+
+                case 6:
+                    a.setVisible(true);
+                    b.setVisible(true);
+                    c.setVisible(true);
+                    d.setVisible(true);
+                    e.setVisible(true);
+                    f.setVisible(true);
+                    g.setVisible(false);
+                    h.setVisible(false);
+                    ocho.setVisible(false);
+                    siete.setVisible(false);
+                    seis.setVisible(true);
+                    cinco.setVisible(true);
+                    cuatro.setVisible(true);
+                    tres.setVisible(true);
+                    dos.setVisible(true);
+                    uno.setVisible(true);
+                    break;
+
+                case 7:
+                    a.setVisible(true);
+                    b.setVisible(true);
+                    c.setVisible(true);
+                    d.setVisible(true);
+                    e.setVisible(true);
+                    f.setVisible(true);
+                    g.setVisible(true);
+                    h.setVisible(false);
+                    ocho.setVisible(false);
+                    siete.setVisible(true);
+                    seis.setVisible(true);
+                    cinco.setVisible(true);
+                    cuatro.setVisible(true);
+                    tres.setVisible(true);
+                    dos.setVisible(true);
+                    uno.setVisible(true);
+                    break;
+
+                case 8:
+                    a.setVisible(true);
+                    b.setVisible(true);
+                    c.setVisible(true);
+                    d.setVisible(true);
+                    e.setVisible(true);
+                    f.setVisible(true);
+                    g.setVisible(true);
+                    h.setVisible(true);
+                    ocho.setVisible(true);
+                    siete.setVisible(true);
+                    seis.setVisible(true);
+                    cinco.setVisible(true);
+                    cuatro.setVisible(true);
+                    tres.setVisible(true);
+                    dos.setVisible(true);
+                    uno.setVisible(true);
+                    break;
             }
-            switch(dimensionTablero)
-            {
-                case 1: a.setVisible(true); b.setVisible(false); c.setVisible(false);
-                        d.setVisible(false); e.setVisible(false); f.setVisible(false);
-                        g.setVisible(false); h.setVisible(false); 
-                        ocho.setVisible(false); siete.setVisible(false); seis.setVisible(false);
-                        cinco.setVisible(false); cuatro.setVisible(false); tres.setVisible(false);
-                        dos.setVisible(false); uno.setVisible(true);break;
-
-                case 2: a.setVisible(true); b.setVisible(true); c.setVisible(false);
-                        d.setVisible(false); e.setVisible(false); f.setVisible(false);
-                        g.setVisible(false); h.setVisible(false);
-                        ocho.setVisible(false); siete.setVisible(false); seis.setVisible(false);
-                        cinco.setVisible(false); cuatro.setVisible(false); tres.setVisible(false);
-                        dos.setVisible(true); uno.setVisible(true);break;
-
-                case 3: a.setVisible(true); b.setVisible(true); c.setVisible(true);
-                        d.setVisible(false); e.setVisible(false); f.setVisible(false);
-                        g.setVisible(false); h.setVisible(false);
-                        ocho.setVisible(false); siete.setVisible(false); seis.setVisible(false);
-                        cinco.setVisible(false); cuatro.setVisible(false); tres.setVisible(true);
-                        dos.setVisible(true); uno.setVisible(true);break;
-
-                case 4: a.setVisible(true); b.setVisible(true); c.setVisible(true);
-                        d.setVisible(true); e.setVisible(false); f.setVisible(false);
-                        g.setVisible(false); h.setVisible(false);
-                        ocho.setVisible(false); siete.setVisible(false); seis.setVisible(false);
-                        cinco.setVisible(false); cuatro.setVisible(true); tres.setVisible(true);
-                        dos.setVisible(true); uno.setVisible(true);break;
-
-                case 5: a.setVisible(true); b.setVisible(true); c.setVisible(true);
-                        d.setVisible(true); e.setVisible(true); f.setVisible(false);
-                        g.setVisible(false); h.setVisible(false);
-                        ocho.setVisible(false); siete.setVisible(false); seis.setVisible(false);
-                        cinco.setVisible(true); cuatro.setVisible(true); tres.setVisible(true);
-                        dos.setVisible(true); uno.setVisible(true);break;
-
-                case 6: a.setVisible(true); b.setVisible(true); c.setVisible(true);
-                        d.setVisible(true); e.setVisible(true); f.setVisible(true);
-                        g.setVisible(false); h.setVisible(false);
-                        ocho.setVisible(false); siete.setVisible(false); seis.setVisible(true);
-                        cinco.setVisible(true); cuatro.setVisible(true); tres.setVisible(true);
-                        dos.setVisible(true); uno.setVisible(true);break;
-
-                case 7: a.setVisible(true); b.setVisible(true); c.setVisible(true);
-                        d.setVisible(true); e.setVisible(true); f.setVisible(true);
-                        g.setVisible(true); h.setVisible(false);
-                        ocho.setVisible(false); siete.setVisible(true); seis.setVisible(true);
-                        cinco.setVisible(true); cuatro.setVisible(true); tres.setVisible(true);
-                        dos.setVisible(true); uno.setVisible(true);break;
-
-                case 8: a.setVisible(true); b.setVisible(true); c.setVisible(true);
-                        d.setVisible(true); e.setVisible(true); f.setVisible(true);
-                        g.setVisible(true); h.setVisible(true);
-                        ocho.setVisible(true); siete.setVisible(true); seis.setVisible(true);
-                        cinco.setVisible(true); cuatro.setVisible(true); tres.setVisible(true);
-                        dos.setVisible(true); uno.setVisible(true);break;
-            }
-        }else
-        {
+        } else {
             JOptionPane.showMessageDialog(rootPane, "INGRESAR DIMENSION ENTRE 1 - 8");
         }
     }//GEN-LAST:event_crearTableroActionPerformed
@@ -376,15 +460,14 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
     }//GEN-LAST:event_dimensionActionPerformed
 
     private void dimensionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dimensionKeyTyped
-                   // PERMITE QUE SOLO SE ACEPTEN NUMEROS Y DE HASTA 20 DIGITOS, CADA VEZ QUE SE TIPEA EN ESTE TEXTFIELD 
-            if(!Character.isDigit(evt.getKeyChar()) && !Character.isISOControl(evt.getKeyChar()))
-            {
+        // PERMITE QUE SOLO SE ACEPTEN NUMEROS Y DE HASTA 20 DIGITOS, CADA VEZ QUE SE TIPEA EN ESTE TEXTFIELD 
+        if (!Character.isDigit(evt.getKeyChar()) && !Character.isISOControl(evt.getKeyChar())) {
             Toolkit.getDefaultToolkit().beep();
             evt.consume();
-            }
-            int k = (int) evt.getKeyChar();
+        }
+        int k = (int) evt.getKeyChar();
     }//GEN-LAST:event_dimensionKeyTyped
-  
+
     /**
      * @param args the command line arguments
      */

@@ -22,9 +22,7 @@ public class CeldaPresenter extends JButton implements ActionListener {
     }
 
     public void setImagen(String imagePath) {
-        ImageIcon icono = new ImageIcon(imagePath);
-        ImageIcon iconAjustado = new ImageIcon(icono.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
-        this.setIcon(iconAjustado);
+        ButtonUtil.ponerIcono(this, imagePath);
     }
 
     @Override
@@ -51,7 +49,7 @@ public class CeldaPresenter extends JButton implements ActionListener {
 
                 break;
             case OCUPADO:
-                setImagen("torre.png");
+                setImagen("/com/unmsm/ochotorres/interfazgrafica/imagenes/torre.png");
                 break;
             case BLOQUEADO:
                 setBackground(Color.BLACK);

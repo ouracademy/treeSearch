@@ -10,11 +10,19 @@ import com.unmsm.util.Consola;
 public class Prueba8TorresconBFS {
 
     public static void main(String[] args) throws FueraLimiteException {
+        /*Pieza pieza = new Torre();
+        Tablero instance = new Tablero();
+        Tablero duplicado =instance.duplicar();
+        instance.agregarPieza(1, 1, pieza);
+        System.out.println(instance);
+        System.out.println(duplicado);*/
         
         int posicionX = 1;
-        int posicionY = 2;
+        int posicionY = 1;
         Pieza pieza = new Torre();
+        Tablero.DIMENSION=8;
         Tablero instance = new Tablero();
+       
         instance.agregarPieza(posicionX, posicionY, pieza);
         Busqueda busqueda = new ArbolBusqueda(new BusquedaBFS());
         Camino caminoSolucion = busqueda.buscar(new EstadoOchoPiezas(instance));
@@ -22,5 +30,6 @@ public class Prueba8TorresconBFS {
         Consola.mostrar(caminoSolucion);
         System.out.println("Número de nodos examinados: "
                     + busqueda.getConteoBusqueda());
+                
     }
 }
