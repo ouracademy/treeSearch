@@ -3,10 +3,8 @@ package com.unmsm.ochotorres.interfazgrafica;
 import com.unmsm.ochotorres.Tablero;
 import com.unmsm.ochotorres.Torre;
 import java.awt.Color;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class CeldaPresenter extends JButton implements ActionListener {
@@ -31,9 +29,9 @@ public class CeldaPresenter extends JButton implements ActionListener {
         int columna = contenido.posicionY;
         contenido.obtenerTablero().agregarPieza(fila, columna, new Torre());
         panelTablero.construirEnBaseA(contenido.obtenerTablero());
+        
     }
-    //------------------------------------------------------------------------//
-
+    
     public void establecerContenido(Tablero.Celda celda) {
         this.contenido = celda;
     }

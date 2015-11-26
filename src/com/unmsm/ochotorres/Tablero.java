@@ -87,13 +87,7 @@ public class Tablero implements Serializable {
     }
 
     public Tablero duplicar() {
-        Tablero tableroDuplicado = null;
-        try {
-            tableroDuplicado = (Tablero)SerializationUtils.clone(this);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return tableroDuplicado;
+        return (Tablero) SerializationUtils.clone(this);
     }
 
     public static class Celda implements Serializable {

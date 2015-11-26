@@ -14,12 +14,14 @@ import com.unmsm.ochotorres.Tablero;
 public class TableroPresenter extends javax.swing.JPanel {
 
     CeldaPresenter[][] matriz;
+    Tablero tableroModelo;
 
     public TableroPresenter() {
         initComponents();
     }
     
     public void construirEnBaseA(Tablero tablero){
+        tableroModelo=tablero;
         this.removeAll();
         matriz = new CeldaPresenter[Tablero.DIMENSION][Tablero.DIMENSION];
         for (int fila = 0; fila < Tablero.DIMENSION; fila++) {
@@ -35,6 +37,13 @@ public class TableroPresenter extends javax.swing.JPanel {
         this.updateUI();
 
     }
+
+    public Tablero getTableroModelo() {
+        return tableroModelo;
+    }
+
+   
+    
 
     
 

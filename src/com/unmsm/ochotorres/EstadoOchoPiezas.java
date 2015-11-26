@@ -1,6 +1,7 @@
 package com.unmsm.ochotorres;
 
 import com.unmsm.busqueda.Estado;
+import com.unmsm.util.Aleatorio;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,22 +22,29 @@ public class EstadoOchoPiezas implements Estado {
 
     @Override
     public List<Estado> generarSucesores() {
-        List<Estado> sucesores = new ArrayList<>();
+        //muchos sucesores : 25401600 posiblidades de localizar las torres   consume mucho memoria  
 
-        //TODO aun no se ha probado...ver EstadoOchoPiezasTest.testGenerarSucesores
-        //Se debe hacer una prueba
-        //se puede agregar
-        
-         
-        for (Tablero.Celda celda : tablero.celdasLibres()) {
-            
-            
+        List<Estado> sucesores = new ArrayList<>();         
+        for (Tablero.Celda celda : tablero.celdasLibres()) { 
             Tablero tableroCopy = tablero.duplicar();
             tableroCopy.agregarPieza(celda.posicionX, celda.posicionY, pieza);
             sucesores.add(new EstadoOchoPiezas(tableroCopy));
         }
-
         return sucesores;
+        
+        
+        //opcion 1:escoger aleatorios de sucesores : escoger 2 de todo el conjunto
+        //opcion 2: usar hilos creo 
+        /*
+        List<Estado> sucesoresAleatorios = new ArrayList<>();
+        int cantidadAleatorios=4;
+        for (int i=0;i<cantidadAleatorios;i++){
+            int indice = Aleatorio.obtenerNumero(0, sucesores.size());
+            sucesoresAleatorios.add(sucesores.get(indice));
+            
+        }
+        return sucesoresAleatorios;*/
+        
     }
 
     @Override

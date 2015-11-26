@@ -2,7 +2,6 @@ package com.unmsm.panqueque;
 
 import com.unmsm.busqueda.ArbolBusqueda;
 import com.unmsm.busqueda.Camino;
-import com.unmsm.busqueda.Busqueda;
 import com.unmsm.busqueda.EstrategiaBusqueda;
 import com.unmsm.busqueda.noinformada.BusquedaDFSLimitada;
 import com.unmsm.busqueda.prioridad.Prioridad;

@@ -5,7 +5,15 @@
  */
 package com.unmsm.ochotorres.interfazgrafica;
 
+import com.unmsm.busqueda.ArbolBusqueda;
+import com.unmsm.busqueda.Camino;
+import com.unmsm.busqueda.EstrategiaBusqueda;
+import com.unmsm.busqueda.informada.costouniforme.BusquedaCostoUniforme;
+import com.unmsm.busqueda.noinformada.BusquedaBFS;
+import com.unmsm.busqueda.noinformada.BusquedaDFS;
+import com.unmsm.ochotorres.EstadoOchoPiezas;
 import com.unmsm.ochotorres.Tablero;
+import com.unmsm.util.Consola;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 /**
@@ -14,6 +22,9 @@ import javax.swing.JOptionPane;
  */
 public class Aplicacion8Torres extends javax.swing.JFrame {
 
+    EstrategiaBusqueda estrategia;
+    ArbolBusqueda arbolBusqueda;
+    
     /**
      * Creates new form Aplicacion8Torres
      */
@@ -73,6 +84,9 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
         tres = new javax.swing.JLabel();
         dos = new javax.swing.JLabel();
         uno = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        tipoArbol = new javax.swing.JComboBox();
+        btnBuscar = new javax.swing.JButton();
         jToolBar1 = new javax.swing.JToolBar();
         jLabel1 = new javax.swing.JLabel();
         fila = new javax.swing.JLabel();
@@ -90,7 +104,7 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
         tableroPresenter.setLayout(tableroPresenterLayout);
         tableroPresenterLayout.setHorizontalGroup(
             tableroPresenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 412, Short.MAX_VALUE)
         );
         tableroPresenterLayout.setVerticalGroup(
             tableroPresenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,11 +116,11 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(anterior, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(posterior, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(51, 51, 51)
+                .addComponent(anterior, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(posterior, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,6 +164,35 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
 
         uno.setText("1");
 
+        jPanel2.setBackground(new java.awt.Color(153, 153, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
+
+        tipoArbol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "BFS", "DFS", "Costo Uniforme", "DFS Limitado", "A*", "Goloso" }));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(tipoArbol, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(tipoArbol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(165, Short.MAX_VALUE))
+        );
+
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
@@ -186,15 +229,23 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
                         .addComponent(h, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelLayout.createSequentialGroup()
-                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tableroPresenter, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE))
-                        .addGap(0, 32, Short.MAX_VALUE))))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelLayout.createSequentialGroup()
+                        .addComponent(tableroPresenter, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelLayout.createSequentialGroup()
+                                .addGap(42, 42, 42)
+                                .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(29, 29, 29))))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(12, Short.MAX_VALUE)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(a)
                     .addComponent(b)
@@ -223,13 +274,17 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
                         .addComponent(siete)
                         .addGap(34, 34, 34)
                         .addComponent(ocho))
-                    .addComponent(tableroPresenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tableroPresenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(114, 114, 114)
+                        .addComponent(btnBuscar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
 
-        getContentPane().add(panel, java.awt.BorderLayout.CENTER);
+        getContentPane().add(panel, java.awt.BorderLayout.LINE_END);
 
         jToolBar1.setBackground(new java.awt.Color(204, 204, 255));
         jToolBar1.setRollover(true);
@@ -245,11 +300,6 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
         dimension.setMinimumSize(new java.awt.Dimension(6, 30));
         dimension.setPreferredSize(new java.awt.Dimension(50, 30));
         dimension.setRequestFocusEnabled(false);
-        dimension.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dimensionActionPerformed(evt);
-            }
-        });
         dimension.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 dimensionKeyTyped(evt);
@@ -455,10 +505,6 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_crearTableroActionPerformed
 
-    private void dimensionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dimensionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dimensionActionPerformed
-
     private void dimensionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dimensionKeyTyped
         // PERMITE QUE SOLO SE ACEPTEN NUMEROS Y DE HASTA 20 DIGITOS, CADA VEZ QUE SE TIPEA EN ESTE TEXTFIELD 
         if (!Character.isDigit(evt.getKeyChar()) && !Character.isISOControl(evt.getKeyChar())) {
@@ -467,6 +513,13 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
         }
         int k = (int) evt.getKeyChar();
     }//GEN-LAST:event_dimensionKeyTyped
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        arbolBusqueda = new ArbolBusqueda(obtenerEstrategia());
+        Camino camino = arbolBusqueda.buscar(new EstadoOchoPiezas(tableroPresenter.getTableroModelo()));
+        Consola.mostrar(camino);
+        
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -507,6 +560,7 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
     private javax.swing.JLabel a;
     private javax.swing.JButton anterior;
     private javax.swing.JLabel b;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JLabel c;
     private javax.swing.JLabel cinco;
     private javax.swing.JButton crearTablero;
@@ -522,6 +576,7 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel ocho;
     private javax.swing.JPanel panel;
@@ -529,7 +584,24 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
     private javax.swing.JLabel seis;
     private javax.swing.JLabel siete;
     private com.unmsm.ochotorres.interfazgrafica.TableroPresenter tableroPresenter;
+    private javax.swing.JComboBox tipoArbol;
     private javax.swing.JLabel tres;
     private javax.swing.JLabel uno;
     // End of variables declaration//GEN-END:variables
+
+    
+    //TODO Llevar a clase Factory. Acabar: Costo Uniforme DFS Limitado A* Goloso
+    private EstrategiaBusqueda obtenerEstrategia() {
+        String tipo = (String)tipoArbol.getSelectedItem();
+        EstrategiaBusqueda estrategiaBusqueda = null;
+        switch(tipo){
+            case "BFS":
+                estrategiaBusqueda = new BusquedaBFS(); break;
+            case "DFS":
+                estrategiaBusqueda = new BusquedaDFS(); break;
+            case "Costo Uniforme":
+                estrategiaBusqueda = new BusquedaCostoUniforme(); break;
+        } 
+        return estrategiaBusqueda;
+    }
 }

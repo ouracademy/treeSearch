@@ -1,13 +1,13 @@
 package com.unmsm.ochotorres;
 
-import com.unmsm.puzzle.*;
+
 import com.unmsm.busqueda.ArbolBusqueda;
 import com.unmsm.busqueda.Camino;
 import com.unmsm.busqueda.noinformada.BusquedaBFS;
 import com.unmsm.busqueda.Busqueda;
 import com.unmsm.util.Consola;
 
-public class Prueba8TorresconBFS {
+public class Prueba8Reinas {
 
     public static void main(String[] args) throws FueraLimiteException {
         /*Pieza pieza = new Torre();
@@ -19,7 +19,7 @@ public class Prueba8TorresconBFS {
         
         int posicionX = 1;
         int posicionY = 1;
-        Pieza pieza = new Torre();
+        Pieza pieza = new Reina();
         Tablero.DIMENSION=8;
         Tablero instance = new Tablero();
        
@@ -32,4 +32,7 @@ public class Prueba8TorresconBFS {
                     + busqueda.getConteoBusqueda());
                 
     }
+    
+   
+    
 }
