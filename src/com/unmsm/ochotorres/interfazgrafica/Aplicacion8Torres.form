@@ -314,7 +314,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="pieza" min="-2" pref="78" max="-2" attributes="0"/>
+                                          <Component id="tipoPieza" min="-2" pref="78" max="-2" attributes="0"/>
                                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -339,7 +339,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="pieza" min="-2" max="-2" attributes="0"/>
+                      <Component id="tipoPieza" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Component id="btnBuscar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="400" max="32767" attributes="0"/>
@@ -381,7 +381,7 @@
                 <Property name="text" type="java.lang.String" value="Seleccione Pieza"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="pieza">
+            <Component class="javax.swing.JComboBox" name="tipoPieza">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="99" green="99" red="99" type="rgb"/>

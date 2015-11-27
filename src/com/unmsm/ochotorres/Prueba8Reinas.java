@@ -16,7 +16,7 @@ public class Prueba8Reinas {
         instance.agregarPieza(1, 1, pieza);
         System.out.println(instance);
         System.out.println(duplicado);*/
-        
+        /*
         int posicionX = 1;
         int posicionY = 1;
         Pieza pieza = new Reina();
@@ -30,7 +30,7 @@ public class Prueba8Reinas {
         Consola.mostrar(caminoSolucion);
         System.out.println("Número de nodos examinados: "
                     + busqueda.getConteoBusqueda());
-                
+    */            
     }
     
    
