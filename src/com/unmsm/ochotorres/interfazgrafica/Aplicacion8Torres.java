@@ -16,8 +16,6 @@ import com.unmsm.ochotorres.EstadoOchoPiezas;
 import com.unmsm.ochotorres.Tablero;
 import com.unmsm.util.Consola;
 import java.awt.Toolkit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -90,6 +88,9 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
         uno = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         tipoArbol = new javax.swing.JComboBox();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        pieza = new javax.swing.JComboBox();
         btnBuscar = new javax.swing.JButton();
         jToolBar1 = new javax.swing.JToolBar();
         jLabel1 = new javax.swing.JLabel();
@@ -173,21 +174,37 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
 
         tipoArbol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "BFS", "DFS", "Costo Uniforme", "DFS Limitado", "A*", "Goloso" }));
 
+        jLabel3.setText("Escoja arbol de busqueda");
+
+        jLabel4.setText("Seleccione Pieza");
+
+        pieza.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Torre", "Reina", "Alfil" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(tipoArbol, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(tipoArbol, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(pieza, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addComponent(jLabel3)
+                .addGap(7, 7, 7)
                 .addComponent(tipoArbol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pieza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
         );
 
         btnBuscar.setText("Buscar");
@@ -520,18 +537,14 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         arbolBusqueda = new ArbolBusqueda(obtenerEstrategia());
-        Camino camino = arbolBusqueda.buscar(new EstadoOchoPiezas(tableroPresenter.getTableroModelo()));
-        Consola.mostrar(camino);
-        for (NodoDeBusqueda nodoBusqueda : camino) {
-              try {
-                Thread.sleep(2000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Aplicacion8Torres.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        Camino caminoSolucion = arbolBusqueda.buscar(new EstadoOchoPiezas(tableroPresenter.getTableroModelo()));
+        //Consola.mostrar(camino);
+        for (NodoDeBusqueda nodoBusqueda : caminoSolucion) {
             EstadoOchoPiezas estadoOchoPiezas = ((EstadoOchoPiezas) nodoBusqueda.getEstadoActual());
-            tableroPresenter.construirEnBaseA(estadoOchoPiezas.getTablero());
-          
+            System.out.println(estadoOchoPiezas.getTablero());
             
+            tableroPresenter.construirEnBaseA(estadoOchoPiezas.getTablero());
+           
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -589,11 +602,14 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
     private javax.swing.JLabel h;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel ocho;
     private javax.swing.JPanel panel;
+    private javax.swing.JComboBox pieza;
     private javax.swing.JButton posterior;
     private javax.swing.JLabel seis;
     private javax.swing.JLabel siete;

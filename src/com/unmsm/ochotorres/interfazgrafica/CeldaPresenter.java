@@ -1,5 +1,7 @@
 package com.unmsm.ochotorres.interfazgrafica;
 
+import com.unmsm.ochotorres.Alfil;
+import com.unmsm.ochotorres.Reina;
 import com.unmsm.ochotorres.Tablero;
 import com.unmsm.ochotorres.Torre;
 import java.awt.Color;
@@ -27,7 +29,7 @@ public class CeldaPresenter extends JButton implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         int fila = contenido.posicionX;
         int columna = contenido.posicionY;
-        contenido.obtenerTablero().agregarPieza(fila, columna, new Torre());
+        contenido.obtenerTablero().agregarPieza(fila, columna, new Alfil());
         panelTablero.construirEnBaseA(contenido.obtenerTablero());
         
     }

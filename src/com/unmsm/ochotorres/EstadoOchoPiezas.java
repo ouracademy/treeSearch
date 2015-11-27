@@ -1,7 +1,6 @@
 package com.unmsm.ochotorres;
 
 import com.unmsm.busqueda.Estado;
-import com.unmsm.util.Aleatorio;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +11,7 @@ public class EstadoOchoPiezas implements Estado {
 
     public EstadoOchoPiezas(Tablero tablero) {
         this.tablero = tablero;
-        this.pieza = new Torre();
+        this.pieza = new Alfil();
     }
 
     @Override
