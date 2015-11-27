@@ -15,8 +15,10 @@ import static org.junit.Assert.*;
  * @author Arthur Mauricio Delgadillo
  */
 public class EstadoOchoPiezasTest {
+    Pieza pieza;
     
     public EstadoOchoPiezasTest() {
+        pieza = new Torre();
     }
     
     @BeforeClass
@@ -47,8 +49,8 @@ public class EstadoOchoPiezasTest {
     }
 
     private EstadoOchoPiezas unaMeta() throws FueraLimiteException{
-        Tablero tablero = unTableroConDiagonalDeTamaño(Tablero.DIMENSION, new Torre());
-        return new EstadoOchoPiezas(tablero);
+        Tablero tablero = unTableroConDiagonalDeTamaño(Tablero.DIMENSION, pieza);
+        return new EstadoOchoPiezas(tablero,pieza);
     }
     
     private Tablero unTableroConDiagonalDeTamaño(int tamaño, Pieza pieza) throws FueraLimiteException{
