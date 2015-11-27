@@ -191,8 +191,14 @@
           </Layout>
           <SubComponents>
             <Component class="javax.swing.JButton" name="anterior">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="anteriorActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="posterior">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="posteriorActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

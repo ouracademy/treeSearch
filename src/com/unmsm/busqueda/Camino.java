@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  *
@@ -42,7 +43,20 @@ public class Camino implements Iterable<NodoDeBusqueda>{
     public Iterator<NodoDeBusqueda> iterator() {
        return voltear().iterator();
     }
+    
+//    public ListIterator<NodoDeBusqueda> listIterator() {
+//       return voltear().listIterator();
+//    }
 
+    
+    public List<NodoDeBusqueda> getCamino(){
+        return camino;
+    }
+    
+    public int tamaño(){
+        return camino.size();
+    }
+    
     private List voltear() {
         List caminoEnReversa = new ArrayList(camino);
         Collections.reverse(caminoEnReversa);

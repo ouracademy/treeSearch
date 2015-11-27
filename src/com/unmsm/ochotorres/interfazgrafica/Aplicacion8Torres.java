@@ -15,6 +15,10 @@ import com.unmsm.busqueda.noinformada.BusquedaDFS;
 import com.unmsm.ochotorres.EstadoOchoPiezas;
 import com.unmsm.ochotorres.Tablero;
 import java.awt.Toolkit;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,6 +29,7 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
 
     EstrategiaBusqueda estrategia;
     ArbolBusqueda arbolBusqueda;
+    private Iterador iterador;
 
     /**
      * Creates new form Aplicacion8Torres
@@ -114,6 +119,18 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
             tableroPresenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 402, Short.MAX_VALUE)
         );
+
+        anterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anteriorActionPerformed(evt);
+            }
+        });
+
+        posterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                posteriorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -540,9 +557,27 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
         if (caminoSolucion.empty()) {
             JOptionPane.showMessageDialog(this, "!Error! No se encontró una solución!", "No hay solucion", JOptionPane.ERROR_MESSAGE);
         } else {
+            iterador = new Iterador(caminoSolucion.getCamino(),caminoSolucion.tamaño());
+//            :;iterador = caminoSolucion.listIterator();
             mostrarSolucion(caminoSolucion);
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void anteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anteriorActionPerformed
+        if(iterador.hasPrevious()){
+            NodoDeBusqueda nodoBusqueda = (NodoDeBusqueda)iterador.previous();
+            EstadoOchoPiezas estadoOchoPiezas = ((EstadoOchoPiezas) nodoBusqueda.getEstadoActual());
+            tableroPresenter.construirEnBaseA(estadoOchoPiezas.getTablero());
+        }
+    }//GEN-LAST:event_anteriorActionPerformed
+
+    private void posteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_posteriorActionPerformed
+        if(iterador.hasNext()){
+            NodoDeBusqueda nodoBusqueda = (NodoDeBusqueda)iterador.next();
+            EstadoOchoPiezas estadoOchoPiezas = ((EstadoOchoPiezas) nodoBusqueda.getEstadoActual());
+            tableroPresenter.construirEnBaseA(estadoOchoPiezas.getTablero());
+        }
+    }//GEN-LAST:event_posteriorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -639,7 +674,8 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
     }
 
     private void mostrarSolucion(Camino caminoSolucion) {
-        Thread hilo = new Thread() {
+        new Thread() {
+            @Override
             public void run() {
                 for (NodoDeBusqueda nodoBusqueda : caminoSolucion) {
                     EstadoOchoPiezas estadoOchoPiezas = ((EstadoOchoPiezas) nodoBusqueda.getEstadoActual());
@@ -647,14 +683,51 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
                     esperar(1);
                 }
             }
-        };
-        hilo.start();
+        }.start();
     }
 
     public void esperar(int segundos) {
         try {
             Thread.sleep(segundos * 1000);
         } catch (Exception e) {
+        }
+    }
+    
+    
+    class Iterador implements Iterator<NodoDeBusqueda>{
+        private Integer posicion;
+        private List<NodoDeBusqueda> camino;
+        
+        public Iterador(){
+            posicion = 0;
+        }
+        
+        public Iterador(List list, Integer tamaño){
+            posicion = tamaño;
+            this.camino = list;
+            Collections.reverse(this.camino);
+        }
+
+        @Override
+        public boolean hasNext() {
+            if (posicion < camino.size()) { return true; }
+            else { return false; }
+        }
+
+        @Override
+        public NodoDeBusqueda next() {
+            posicion++;
+            return camino.get(posicion-1);
+        }
+        
+        public boolean hasPrevious(){
+            if (posicion > 0) { return true; }
+            else { return false; }
+        }
+        
+        public NodoDeBusqueda previous(){
+            posicion--;
+            return camino.get(posicion);
         }
     }
 }
