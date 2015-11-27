@@ -268,7 +268,7 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
                     .addComponent(siete)
                     .addGap(34, 34, 34)
                     .addComponent(ocho)
-                    .addContainerGap(148, Short.MAX_VALUE)))
+                    .addContainerGap(151, Short.MAX_VALUE)))
         );
 
         jPanel4.add(jPanel3, java.awt.BorderLayout.CENTER);
@@ -334,7 +334,7 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
                 .addComponent(tipoPieza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addComponent(btnBuscar)
-                .addContainerGap(364, Short.MAX_VALUE))
+                .addContainerGap(372, Short.MAX_VALUE))
         );
 
         panel.add(jPanel2, java.awt.BorderLayout.EAST);
@@ -344,7 +344,8 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
         jToolBar1.setBackground(new java.awt.Color(204, 204, 255));
         jToolBar1.setRollover(true);
 
-        jLabel1.setPreferredSize(new java.awt.Dimension(40, 40));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/unmsm/ochotorres/interfazgrafica/imagenes/40px-Chess_rdt45.svg.png"))); // NOI18N
+        jLabel1.setPreferredSize(new java.awt.Dimension(100, 40));
         jToolBar1.add(jLabel1);
 
         fila.setFont(new java.awt.Font("Arial Narrow", 1, 13)); // NOI18N
@@ -378,7 +379,8 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
         jToolBar1.add(crearTablero);
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setPreferredSize(new java.awt.Dimension(60, 40));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/unmsm/ochotorres/interfazgrafica/imagenes/40px-Chess_rdt45.svg.png"))); // NOI18N
+        jLabel2.setPreferredSize(new java.awt.Dimension(200, 40));
         jToolBar1.add(jLabel2);
 
         getContentPane().add(jToolBar1, java.awt.BorderLayout.PAGE_START);
