@@ -25,4 +25,20 @@ public class PanquequeConDFSTest {
         assertEquals((int)caminoSolucion.getCosto(), 20);
         assertEquals(busqueda.getConteoBusqueda(), 21);
     }
+    
+    @Test
+    public void unDobleDFS(){
+        Integer[] a = { 4,1,3,2};
+        EstrategiaBusqueda estrategiaBusqueda = new BusquedaDFS()
+                .conPrioridad(Prioridad.Tipos.DERECHA_A_IZQUIERDA);
+        
+        Busqueda busqueda = new ArbolBusqueda(estrategiaBusqueda);
+        Camino caminoSolucion1 = busqueda.buscar(new EstadoPanqueques(a));
+        assertEquals((int)caminoSolucion1.getCosto(), 20);
+        assertEquals(busqueda.getConteoBusqueda(), 21);
+        
+        Camino caminoSolucion2 = busqueda.buscar(new EstadoPanqueques(a));
+        assertEquals((int)caminoSolucion2.getCosto(), 20);
+        assertEquals(busqueda.getConteoBusqueda(), 21);
+    }
 }

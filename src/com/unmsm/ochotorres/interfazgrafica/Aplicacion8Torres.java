@@ -538,13 +538,10 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         arbolBusqueda = new ArbolBusqueda(obtenerEstrategia());
         Camino caminoSolucion = arbolBusqueda.buscar(new EstadoOchoPiezas(tableroPresenter.getTableroModelo()));
-        //Consola.mostrar(camino);
-        for (NodoDeBusqueda nodoBusqueda : caminoSolucion) {
-            EstadoOchoPiezas estadoOchoPiezas = ((EstadoOchoPiezas) nodoBusqueda.getEstadoActual());
-            System.out.println(estadoOchoPiezas.getTablero());
-            
-            tableroPresenter.construirEnBaseA(estadoOchoPiezas.getTablero());
-           
+        if (caminoSolucion.empty()) {
+            JOptionPane.showMessageDialog(this, "!Error! No se encontró una solución!", "No hay solucion", JOptionPane.ERROR_MESSAGE);
+        } else {
+            mostrarSolucion(caminoSolucion);
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -635,5 +632,13 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
                 break;
         }
         return estrategiaBusqueda;
+    }
+
+    private void mostrarSolucion(Camino caminoSolucion) {
+        for (NodoDeBusqueda nodoBusqueda : caminoSolucion) {
+            EstadoOchoPiezas estadoOchoPiezas = ((EstadoOchoPiezas) nodoBusqueda.getEstadoActual());
+            System.out.println(estadoOchoPiezas.getTablero());
+            tableroPresenter.construirEnBaseA(estadoOchoPiezas.getTablero());
+        }
     }
 }
