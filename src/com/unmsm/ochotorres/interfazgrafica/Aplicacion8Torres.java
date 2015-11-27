@@ -8,6 +8,7 @@ package com.unmsm.ochotorres.interfazgrafica;
 import com.unmsm.busqueda.ArbolBusqueda;
 import com.unmsm.busqueda.Camino;
 import com.unmsm.busqueda.EstrategiaBusqueda;
+import com.unmsm.busqueda.NodoDeBusqueda;
 import com.unmsm.busqueda.informada.costouniforme.BusquedaCostoUniforme;
 import com.unmsm.busqueda.noinformada.BusquedaBFS;
 import com.unmsm.busqueda.noinformada.BusquedaDFS;
@@ -15,7 +16,10 @@ import com.unmsm.ochotorres.EstadoOchoPiezas;
 import com.unmsm.ochotorres.Tablero;
 import com.unmsm.util.Consola;
 import java.awt.Toolkit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author pc
@@ -24,7 +28,7 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
 
     EstrategiaBusqueda estrategia;
     ArbolBusqueda arbolBusqueda;
-    
+
     /**
      * Creates new form Aplicacion8Torres
      */
@@ -518,7 +522,17 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
         arbolBusqueda = new ArbolBusqueda(obtenerEstrategia());
         Camino camino = arbolBusqueda.buscar(new EstadoOchoPiezas(tableroPresenter.getTableroModelo()));
         Consola.mostrar(camino);
-        
+        for (NodoDeBusqueda nodoBusqueda : camino) {
+              try {
+                Thread.sleep(2000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Aplicacion8Torres.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            EstadoOchoPiezas estadoOchoPiezas = ((EstadoOchoPiezas) nodoBusqueda.getEstadoActual());
+            tableroPresenter.construirEnBaseA(estadoOchoPiezas.getTablero());
+          
+            
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
@@ -589,19 +603,21 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
     private javax.swing.JLabel uno;
     // End of variables declaration//GEN-END:variables
 
-    
     //TODO Llevar a clase Factory. Acabar: Costo Uniforme DFS Limitado A* Goloso
     private EstrategiaBusqueda obtenerEstrategia() {
-        String tipo = (String)tipoArbol.getSelectedItem();
+        String tipo = (String) tipoArbol.getSelectedItem();
         EstrategiaBusqueda estrategiaBusqueda = null;
-        switch(tipo){
+        switch (tipo) {
             case "BFS":
-                estrategiaBusqueda = new BusquedaBFS(); break;
+                estrategiaBusqueda = new BusquedaBFS();
+                break;
             case "DFS":
-                estrategiaBusqueda = new BusquedaDFS(); break;
+                estrategiaBusqueda = new BusquedaDFS();
+                break;
             case "Costo Uniforme":
-                estrategiaBusqueda = new BusquedaCostoUniforme(); break;
-        } 
+                estrategiaBusqueda = new BusquedaCostoUniforme();
+                break;
+        }
         return estrategiaBusqueda;
     }
 }
