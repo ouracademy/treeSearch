@@ -37,8 +37,7 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
         initComponents();
         IconUtil.ponerIcono(anterior, "/com/unmsm/ochotorres/interfazgrafica/imagenes/anterior.jpg");
         IconUtil.ponerIcono(posterior, "/com/unmsm/ochotorres/interfazgrafica/imagenes/posterior.jpg");
-        
-      
+             
         tableroLimpio();
     }
 

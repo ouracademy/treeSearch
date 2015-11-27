@@ -19,6 +19,8 @@ public class EstadoOchoPiezas implements Estado {
         this.pieza = pieza;
     }
 
+
+
     @Override
     public boolean esMeta() {
         return tablero.getCantidadPiezas() == Tablero.DIMENSION && tablero.celdasLibres().isEmpty();
