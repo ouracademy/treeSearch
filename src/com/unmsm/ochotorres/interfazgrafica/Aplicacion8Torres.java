@@ -14,7 +14,6 @@ import com.unmsm.busqueda.noinformada.BusquedaBFS;
 import com.unmsm.busqueda.noinformada.BusquedaDFS;
 import com.unmsm.ochotorres.EstadoOchoPiezas;
 import com.unmsm.ochotorres.Tablero;
-import com.unmsm.util.Consola;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
@@ -554,27 +553,11 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         arbolBusqueda = new ArbolBusqueda(obtenerEstrategia());
         Camino caminoSolucion = arbolBusqueda.buscar(new EstadoOchoPiezas(tableroPresenter.getTableroModelo()));
-        //Consola.mostrar(camino);
-
-        Thread hilo = new Thread() {
-            public void run() {
-                for (NodoDeBusqueda nodoBusqueda : caminoSolucion) {
-                    EstadoOchoPiezas estadoOchoPiezas = ((EstadoOchoPiezas) nodoBusqueda.getEstadoActual());
-                    System.out.println(estadoOchoPiezas.getTablero());
-                    tableroPresenter.construirEnBaseA(estadoOchoPiezas.getTablero());
-                    esperar(1);
-                }
-            }
-        };
-        hilo.start();
-    }
-
-    public void esperar(int segundos) {
-        try {
-            Thread.sleep(segundos * 1000);
-        } catch (Exception e) {
+        if (caminoSolucion.empty()) {
+            JOptionPane.showMessageDialog(this, "!Error! No se encontró una solución!", "No hay solucion", JOptionPane.ERROR_MESSAGE);
+        } else {
+            mostrarSolucion(caminoSolucion);
         }
-
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
@@ -672,5 +655,24 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
         }
         return estrategiaBusqueda;
     }
-    
+
+    private void mostrarSolucion(Camino caminoSolucion) {
+        Thread hilo = new Thread() {
+            public void run() {
+                for (NodoDeBusqueda nodoBusqueda : caminoSolucion) {
+                    EstadoOchoPiezas estadoOchoPiezas = ((EstadoOchoPiezas) nodoBusqueda.getEstadoActual());
+                    tableroPresenter.construirEnBaseA(estadoOchoPiezas.getTablero());
+                    esperar(1);
+                }
+            }
+        };
+        hilo.start();
+    }
+
+    public void esperar(int segundos) {
+        try {
+            Thread.sleep(segundos * 1000);
+        } catch (Exception e) {
+        }
+    }
 }

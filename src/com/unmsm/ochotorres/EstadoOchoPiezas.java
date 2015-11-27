@@ -25,9 +25,9 @@ public class EstadoOchoPiezas implements Estado {
 
         List<Estado> sucesores = new ArrayList<>();         
         for (Tablero.Celda celda : tablero.celdasLibres()) { 
-            Tablero tableroCopy = tablero.duplicar();
-            tableroCopy.agregarPieza(celda.posicionX, celda.posicionY, pieza);
-            sucesores.add(new EstadoOchoPiezas(tableroCopy));
+            Tablero tableroCopia = tablero.duplicar();
+            tableroCopia.agregarPieza(celda.posicionX, celda.posicionY, pieza);
+            sucesores.add(new EstadoOchoPiezas(tableroCopia));
         }
         return sucesores;
         
