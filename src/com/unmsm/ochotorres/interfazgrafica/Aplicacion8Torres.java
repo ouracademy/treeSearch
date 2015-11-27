@@ -557,9 +557,10 @@ public class Aplicacion8Torres extends javax.swing.JFrame {
         if (caminoSolucion.empty()) {
             JOptionPane.showMessageDialog(this, "!Error! No se encontró una solución!", "No hay solucion", JOptionPane.ERROR_MESSAGE);
         } else {
-            iterador = new Iterador(caminoSolucion.getCamino(),caminoSolucion.tamaño());
+            
 //            :;iterador = caminoSolucion.listIterator();
             mostrarSolucion(caminoSolucion);
+            iterador = new Iterador(caminoSolucion.getCamino(),caminoSolucion.tamaño());
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
