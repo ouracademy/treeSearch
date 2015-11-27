@@ -22,7 +22,7 @@ public class CeldaPresenter extends JButton implements ActionListener {
     }
 
     public void setImagen(String imagePath) {
-        ButtonUtil.ponerIcono(this, imagePath);
+        IconUtil.ponerIcono(this, imagePath);
     }
 
     @Override
@@ -42,9 +42,10 @@ public class CeldaPresenter extends JButton implements ActionListener {
         switch (this.contenido.obtenerEstado()) {
             case LIBRE:
                 if ((this.contenido.posicionX + this.contenido.posicionY) % 2 == 0) {
-                    setBackground(Color.PINK);
+                    Color c=new Color(189,123,34,212);
+                    setBackground(c);
                 } else {
-                    setBackground(Color.WHITE);
+                    setBackground(new Color(243,248,155,208));
                 }
 
                 break;

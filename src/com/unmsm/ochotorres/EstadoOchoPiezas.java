@@ -8,11 +8,18 @@ public class EstadoOchoPiezas implements Estado {
 
     private Pieza pieza;
     private Tablero tablero;
-
+/*
     public EstadoOchoPiezas(Tablero tablero) {
         this.tablero = tablero;
         this.pieza = new Alfil();
+    }*/
+    //establecer pieza 
+    public EstadoOchoPiezas(Tablero tablero, Pieza pieza) {
+        this.tablero = tablero;
+        this.pieza = pieza;
     }
+
+
 
     @Override
     public boolean esMeta() {
@@ -27,7 +34,7 @@ public class EstadoOchoPiezas implements Estado {
         for (Tablero.Celda celda : tablero.celdasLibres()) { 
             Tablero tableroCopia = tablero.duplicar();
             tableroCopia.agregarPieza(celda.posicionX, celda.posicionY, pieza);
-            sucesores.add(new EstadoOchoPiezas(tableroCopia));
+            sucesores.add(new EstadoOchoPiezas(tableroCopia,pieza));//aumenté parametro pieza
         }
         return sucesores;
         
